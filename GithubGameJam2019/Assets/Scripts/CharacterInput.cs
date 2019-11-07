@@ -25,9 +25,9 @@ namespace Drw.CharacterSystems
             get
             {
                 Vector3 move = new Vector3(
-                    Input.GetAxisRaw(GameConstants.k_AxisNameHorizontal), 
+                    Input.GetAxis(GameConstants.k_AxisNameHorizontal), 
                     0f, 
-                    Input.GetAxisRaw(GameConstants.k_AxisNameVertical));
+                    Input.GetAxis(GameConstants.k_AxisNameVertical));
 
                 move = Vector3.ClampMagnitude(move, 1f);
                 return move;

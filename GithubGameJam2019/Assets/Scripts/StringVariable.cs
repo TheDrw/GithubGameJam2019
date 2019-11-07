@@ -1,5 +1,4 @@
-﻿
-// ----------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------
 // Taken from: https://github.com/roboryantron/Unite2017/
 // Video : https://www.youtube.com/watch?v=raQ3iHhE_Kk
 // Unite 2017 - Game Architecture with Scriptable Objects
