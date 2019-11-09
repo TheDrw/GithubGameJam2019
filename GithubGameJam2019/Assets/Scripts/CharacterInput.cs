@@ -12,14 +12,11 @@ namespace Drw.CharacterSystems
         bool isInteractionEnabled;
 
 
-        private void OnEnable()
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            
-        }
-
         public bool CanProcessInputs => throw new System.NotImplementedException();
 
+        /// <summary>
+        /// Clamps magnitude, so you don't have to.
+        /// </summary>
         public Vector3 MoveInput
         {
             get
@@ -38,7 +35,13 @@ namespace Drw.CharacterSystems
 
         public float LookInputVertical => throw new System.NotImplementedException();
 
-        public bool JumpInputDown => throw new System.NotImplementedException();
+        public bool JumpInputDown
+        {
+            get
+            {
+                return Input.GetButtonDown(GameConstants.k_ButtonNameJump);
+            }
+        }
 
         public bool InteractInputDown => throw new System.NotImplementedException();
 

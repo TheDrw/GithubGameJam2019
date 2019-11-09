@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6675694907140815771}
   - component: {fileID: 6675694907140815768}
   - component: {fileID: 4995642198414802114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4995642198414802114
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 4430c4f18f3f0e840b3ba8f776983288, type: 2}
-  moveSpeed: 10
+  groundMoveSpeed: 10
   movementSharpnessOnGround: 15
 --- !u!1 &9167845255041497533
 GameObject:
