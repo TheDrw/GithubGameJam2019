@@ -9,7 +9,7 @@ namespace Drw.CharacterSystems
     public class CharacterMovement : MonoBehaviour
     {
         [SerializeField] CharacterInput input;
-        [SerializeField] float groundMoveSpeed = 10f;
+        [SerializeField] float groundMoveSpeed;
         [SerializeField] float movementSharpnessOnGround = 15f;
 
         bool isSliding;
@@ -22,15 +22,20 @@ namespace Drw.CharacterSystems
         float k_GroundLockTime = 0.06f;
         float k_GroundCheckDistanceInAir = 0.07f;
         float k_GroundCheckDistance = 0.1f;
-        float gravityForce = 15f;
+        float gravityForce = 20f;
         CharacterController characterController;
         Camera mainCamera;
         Vector3 moveDirection;
         float camRelativeAngle;
+        Animator animator;
+        Vector3 groundSlope;
 
+        float lastTimeLanded = 0f;
+        float k_LandingRecoveryDelay = 0.01f;
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
         }
 
         private void Start()
@@ -43,65 +48,47 @@ namespace Drw.CharacterSystems
         // Update is called once per frame
         void Update()
         {
-            //if (characterController.isGrounded)
-            //{
-            //    // We are grounded, so recalculate
-            //    // move direction directly from axes
-
-            //    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            //    moveDirection *= 10;
-
-            //    if (Input.GetButton("Jump"))
-            //    {
-            //        moveDirection.y = 5;
-            //    }
-            //}
-
-            //print(isGrounded);
-
-            //// Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-            //// when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-            //// as an acceleration (ms^-2)
-            //moveDirection.y -= 9.81f * Time.deltaTime;
-
-            //// Move the controller
-            //characterController.Move(moveDirection * Time.deltaTime);
-
-
-
-            //print(characterController.isGrounded);
-            //if (characterController.isGrounded)
-            //{
-            //    GroundMovement();
-            //}
-            //else
-            //{
-            //    AirborneMovement();
-            //}
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                animator.SetTrigger("attack1");
+            }
 
             RotateCharacterRelativeToCameraForward();
-            //characterController.Move(moveDirection);
-
-
             Landing();
             CalculateMovement();
             Move();
+            Animate();
+        }
+
+        private void Animate()
+        {
+            float speed = DeterimineMoveSpeed();
+            if (isGrounded)
+            {
+                animator.SetFloat("forwardSpeed", speed);
+            }
         }
 
         private void Move()
         {
-            characterController.Move(moveDirection * Time.deltaTime);
+            if (lastTimeLanded + k_LandingRecoveryDelay <= Time.time)
+            {
+                characterController.Move(moveDirection * Time.deltaTime);
+            }
         }
 
         private void CalculateMovement()
         {
-            Vector3 worldSpaceMoveInput = transform.forward * input.MoveInput.sqrMagnitude;
+            Vector3 worldSpaceMoveInput = groundSlope * input.MoveInput.sqrMagnitude;
             if(isGrounded)
             {
                 GroundMovement(worldSpaceMoveInput);
             }
             else
             {
+                print("airborne");
+                //animator.SetBool("isGrounded", false);
+                //animator.SetTrigger("falling");
                 AirborneMovement(worldSpaceMoveInput);
             }
         }
@@ -110,7 +97,7 @@ namespace Drw.CharacterSystems
         {
             //Vector3 targetVelocity = worldSpaceMoveInput * groundMoveSpeed;
             //moveDirection = Vector3.Lerp(moveDirection, targetVelocity, 1f);
-            moveDirection = worldSpaceMoveInput * groundMoveSpeed;
+            moveDirection = worldSpaceMoveInput * DeterimineMoveSpeed();
             if(input.JumpInputDown)
             {
                 Jump();
@@ -119,16 +106,17 @@ namespace Drw.CharacterSystems
 
         private void Jump()
         {
+            animator.SetTrigger("jump");
             moveDirection = new Vector3(moveDirection.x, 0f, moveDirection.z);
             moveDirection += Vector3.up * jumpForce;
             lastTimeJumped = Time.time;
             hasJumpedThisFrame = true;
             isGrounded = false;
+
         }
 
         private void AirborneMovement(Vector3 worldSpaceMoveInput)
         {
-            
             moveDirection += airborneMovespeed * worldSpaceMoveInput * Time.deltaTime;
             ApplyGravity();
         }
@@ -142,7 +130,9 @@ namespace Drw.CharacterSystems
             // landed
             if(isGrounded && !wasGrounded)
             {
-
+                lastTimeLanded = Time.time;
+                print("landed");
+                animator.SetTrigger("land");
             }
         }
 
@@ -169,35 +159,20 @@ namespace Drw.CharacterSystems
                     ))
                 {
                     isGrounded = true;
-
-                    //float platformAngle = Vector3.Angle(transform.up, hit.normal);
-                    //if(platformAngle > 45)
-                    //{
+                    animator.SetBool("isGrounded", true);
+                    float platformAngle = Vector3.Angle(transform.up, hit.normal);
+                    groundSlope = Vector3.Cross(transform.right, hit.normal);
+                    Debug.DrawRay(transform.position, Vector3.Cross(transform.right, hit.normal), Color.green);
+                    print(platformAngle);
+                    if (platformAngle > 60)
+                    {
                         //isGrounded = false;
                         //isSliding = true;
-                        //Debug.DrawRay(transform.position, Vector3.right * hit.normal.x, Color.green);
-                        //moveDirection = hit.normal * 10f * Time.deltaTime;
-                        //characterController.Move(moveDirection);
-                    //}
-
-                    //print(platformAngle);
-                    //print(Vector3.Dot(transform.up, hit.normal));
+                        groundSlope = transform.forward;
+                        
+                    }
                 }
-
-                //if(Physics.Raycast(ray, out RaycastHit hit, rayLength))
-                //{
-                    //isGrounded = true;
-
-                    // snap to the ground depending distance
-                    //print(hit.distance + " " + characterController.skinWidth);
-                    //if (hit.distance > characterController.skinWidth)
-                    //{
-                    //    print("snap");
-                    //    characterController.Move(Vector3.down * hit.distance);
-                    //}
-                //}
             }
-
             //print("grounded: " + isGrounded);
         }
 
@@ -211,27 +186,6 @@ namespace Drw.CharacterSystems
         {
             moveDirection += Vector3.down * gravityForce * Time.deltaTime;
         }
-        /*
-        // Taken from https://learn.unity.com/course/unity-game-dev-course-programming-part-1
-        // warning : it is a paid course, or free for 1 month for new people. credit card is required.
-        // i don't fully knwo what it is doing, but i understand the idea.
-        void RotateCharacterRelativeToCameraForward()
-        {
-
-            Vector3 camFwd = mainCamera.transform.forward;
-            camFwd.y = 0; // lock y rotation of character so it doesn't rotate its transform up xor down
-
-            Quaternion camRelativeRotation = Quaternion.FromToRotation(Vector3.forward, camFwd);
-            Vector3 lookToward = camRelativeRotation * input.MoveInput;
-
-            Debug.DrawRay(transform.position, lookToward, Color.red);
-            if (input.MoveInput.sqrMagnitude > 0)
-            { 
-                Ray target = new Ray(transform.position, lookToward);
-                transform.LookAt(target.GetPoint(1));
-            }
-        }
-        */
 
         // by renaissance coders youtube link: https://www.youtube.com/watch?v=cVy-NTjqZR8
         // WAY simpler than the other one
@@ -239,13 +193,32 @@ namespace Drw.CharacterSystems
         {
             if (input.MoveInput.sqrMagnitude <= 0f) return;
 
-            print(input.MoveInput.sqrMagnitude);
+            
             camRelativeAngle = Mathf.Atan2(input.MoveInput.x, input.MoveInput.z);
             camRelativeAngle = Mathf.Rad2Deg * camRelativeAngle;
             camRelativeAngle += mainCamera.transform.eulerAngles.y;
 
             var targetRotation = Quaternion.Euler(0f, camRelativeAngle, 0f);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.1f);
+        }
+
+        float DeterimineMoveSpeed()
+        {
+            float inputMagnitude = input.MoveInput.sqrMagnitude;
+            if(inputMagnitude >= 0.2f && inputMagnitude < 0.75f)
+            {
+                groundMoveSpeed = 3f;
+            }
+            else if(inputMagnitude >= 0.75)
+            {
+                groundMoveSpeed = 8f;
+            }
+            else
+            {
+                groundMoveSpeed = 0f;
+            }
+
+            return groundMoveSpeed;
         }
     }
 }
