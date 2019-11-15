@@ -47,7 +47,13 @@ namespace Drw.CharacterSystems
 
         public bool DefaultAttackInputDown => throw new System.NotImplementedException();
 
-        public bool SpecialAttackOneInputDown => throw new System.NotImplementedException();
+        public bool SpecialAttackOneInputDown
+        {
+            get
+            {
+                return Input.GetButtonDown(GameConstants.k_ButtonNameFire1);
+            }
+        }
 
         public void LockAllInputs()
         {

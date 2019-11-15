@@ -1,18 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IMoveable : MonoBehaviour
+﻿namespace Drw.Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IMoveable
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Jump(float amount);
     }
 }
