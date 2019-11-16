@@ -12,13 +12,14 @@ namespace Drw.CharacterSystems
         [SerializeField] CharacterInput input;
         [SerializeField] float groundMoveSpeed;
         [SerializeField] float movementSharpnessOnGround = 15f;
+        [SerializeField] CharacterStateMachine stateMachine;
 
         public bool IsGrounded { get { return isGrounded; } }
 
         bool isSliding;
         bool hasJumpedThisFrame;
         bool isGrounded;
-        float airborneMovespeed = 5f;
+        float airborneMovespeed = 2.5f;
         const float jumpForce = 6f;
         float lastTimeJumped = 0f;
         float k_JumpGroundingPreventionTime = 0.2f;
@@ -42,7 +43,11 @@ namespace Drw.CharacterSystems
         {
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
-            scheduler = GetComponent<CharacterScheduler>();
+
+            if(stateMachine == null)
+            {
+                Debug.LogError($"State machine missing on {name}");
+            }
         }
 
         private void Start()
@@ -60,7 +65,6 @@ namespace Drw.CharacterSystems
             Landing();
             CalculateMovement();
             Move();
-            AnimateMovement();
         }
 
         private void AnimateMovement()
@@ -76,7 +80,11 @@ namespace Drw.CharacterSystems
         {
             if (lastTimeLanded + k_LandingRecoveryDelay <= Time.time)
             {
-                characterController.Move(moveDirection * Time.deltaTime);
+                if (stateMachine.IsInMoveableState())
+                {
+                    AnimateMovement();
+                    characterController.Move(moveDirection * Time.deltaTime);
+                }
             }
         }
 
@@ -86,13 +94,11 @@ namespace Drw.CharacterSystems
 
             if(isGrounded)
             {
-                if (input.MoveInput.sqrMagnitude > 0) scheduler.CancelCurrentSchedule();
-
                 GroundMovement(worldSpaceMoveInput);
             }
             else
             {
-                scheduler.StartSchedule(this, true);
+                stateMachine.SetCharacterState(CharacterState.Airborne, this);
                 AirborneMovement(worldSpaceMoveInput);
             }
         }
@@ -101,7 +107,17 @@ namespace Drw.CharacterSystems
         {
             //Vector3 targetVelocity = worldSpaceMoveInput * groundMoveSpeed;
             //moveDirection = Vector3.Lerp(moveDirection, targetVelocity, 1f);
-            moveDirection = worldSpaceMoveInput * DeterimineMoveSpeed();
+            float moveSpeed = DeterimineMoveSpeed();
+            moveDirection = worldSpaceMoveInput * moveSpeed;
+            if(moveSpeed == 0f)
+            {
+                stateMachine.SetCharacterState(CharacterState.Grounded, this);
+            }
+            else
+            {
+                stateMachine.SetCharacterState(CharacterState.Moving, this);
+            }
+
             if(input.JumpInputDown)
             {
                 Jump();
@@ -140,7 +156,6 @@ namespace Drw.CharacterSystems
                     //print("HANG TIME!");
                 }
 
-                scheduler.StartSchedule(this, false);
                 lastTimeLanded = Time.time;
                 animator.SetTrigger("land");
             }
@@ -157,12 +172,13 @@ namespace Drw.CharacterSystems
 
                 float extension = 0.0f;
                 float distanceFromCenterToGround = (extension + (characterController.height / 2));// - characterController.radius;
-                if (Physics.SphereCast(
-                    transform.position, 
-                    characterController.radius, 
-                    Vector3.down, 
-                    out RaycastHit hit,
-                    distanceFromCenterToGround
+                if (Physics.SphereCast
+                    (
+                        transform.position, 
+                        characterController.radius, 
+                        Vector3.down, 
+                        out RaycastHit hit,
+                        distanceFromCenterToGround
                     ))
                 {
                     isGrounded = true;
@@ -225,7 +241,7 @@ namespace Drw.CharacterSystems
         {
             float minWalkThreshold = 0.2f;
             float maxWalkThreshold = 0.75f;
-            float walkSpeed = 3f;
+            float walkSpeed = 3.5f;
             float runSpeed = 8f;
             float inputMagnitude = input.MoveInput.sqrMagnitude;
             if(inputMagnitude >= minWalkThreshold && inputMagnitude < maxWalkThreshold)
@@ -247,7 +263,7 @@ namespace Drw.CharacterSystems
         public void Cancel()
         {
             // doesn't cancel anything, but should prevent moving inputs from being received
-            print("cancel movement");
+            //print("cancel movement");
         }
     }
 }

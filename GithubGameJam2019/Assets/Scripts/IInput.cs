@@ -29,7 +29,7 @@ namespace Drw.CharacterSystems
         bool JumpInputDown { get; }
         bool InteractInputDown { get; }
         bool DefaultAttackInputDown { get; }
-        bool SpecialAttackOneInputDown { get; }
+        bool SpecialAbilityOneInputDown { get; }
         
         
     }

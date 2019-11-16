@@ -10,6 +10,7 @@ namespace Drw.CharacterSystems
         [SerializeField] CharacterInput input;
         [SerializeField] GameObject spring;
         [SerializeField] GameObject projectile;
+        [SerializeField] CharacterStateMachine stateMachine;
 
         Animator animator;
         CharacterScheduler scheduler;
@@ -18,45 +19,71 @@ namespace Drw.CharacterSystems
         {
             animator = GetComponent<Animator>();
             scheduler = GetComponent<CharacterScheduler>();
+            if (stateMachine == null)
+            {
+                Debug.LogError($"State machine missing on {name}");
+            }
         }
 
         void Update()
         {
-            if(input.SpecialAttackOneInputDown)
+            if(input.DefaultAttackInputDown)
             {
-                SpecialAttackOne();
+                DefaultAbility();
+            }
+            else if(input.SpecialAbilityOneInputDown)
+            {
+                SpecialAbilityOne();
             }
         }
 
-        void DefaultAttack()
+        void DefaultAbility()
         {
-
+            stateMachine.SetCharacterState(CharacterState.Attacking, this);
+            if (stateMachine.WasSetStateSuccessful)
+            {
+                animator.SetTrigger("defaultAbility");
+            }
         }
 
-        void SpecialAttackOne()
+        void AnimationHit()
         {
-
-            StartCoroutine(SpecialAttackOneRoutine());
+            print("POW");
         }
 
-        IEnumerator SpecialAttackOneRoutine()
+        void AnimationDone()
         {
-            animator.SetTrigger("attack1");
+            print("FIN");
+            stateMachine.SetCharacterState(CharacterState.Idle, null);
+        }
 
-            yield return new WaitForSeconds(1f);
-            Instantiate(
-                spring,
-                transform.position + transform.forward * 4f + Vector3.down,
-                Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f)
+        void SpecialAbilityOne()
+        {
+            stateMachine.SetCharacterState(CharacterState.Casting, this);
+            if (stateMachine.WasSetStateSuccessful)
+            {
+                StartCoroutine(SpecialAbilityOneRoutine());
+            }
+        }
+
+        IEnumerator SpecialAbilityOneRoutine()
+        {
+            animator.SetTrigger("abilityOne");
+            yield return new WaitForSeconds(1.2f);
+            Instantiate
+                (
+                    spring,
+                    transform.position + transform.forward * 4f + Vector3.down,
+                    Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f)
                 );
 
-            scheduler.CancelCurrentSchedule();
+            stateMachine.SetCharacterState(CharacterState.Idle, null);
         }
 
         public void Cancel()
         {
-            print("cancel actions");
-            animator.ResetTrigger("attack1");
+            print("cancel all actions");
+            //animator.ResetTrigger("attack1");
             StopAllCoroutines();
         }
     }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// idea from https://www.udemy.com/course/unityrpg/
+/// </summary>
 namespace Drw.CharacterSystems
 {
     public class CharacterScheduler : MonoBehaviour

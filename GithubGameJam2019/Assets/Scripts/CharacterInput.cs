@@ -45,13 +45,19 @@ namespace Drw.CharacterSystems
 
         public bool InteractInputDown => throw new System.NotImplementedException();
 
-        public bool DefaultAttackInputDown => throw new System.NotImplementedException();
-
-        public bool SpecialAttackOneInputDown
+        public bool DefaultAttackInputDown
         {
             get
             {
                 return Input.GetButtonDown(GameConstants.k_ButtonNameFire1);
+            }
+        }
+
+        public bool SpecialAbilityOneInputDown
+        {
+            get
+            {
+                return Input.GetButtonDown(GameConstants.k_ButtonNameFire2);
             }
         }
 
