@@ -6,14 +6,11 @@ namespace Drw.CharacterSystems
 {
     public abstract class Ability : ScriptableObject
     {
-        public string title = "Default";
-        public Sprite sprite;
-        public AudioClip sound;
+        public Sprite spriteIcon;
         public float baseCoolDown = 1f;
-        public CharacterState[] characterStateRequirements;
+        public bool isReady;
 
         public abstract void Initialize(GameObject obj);
         public abstract void TriggerAbility();
-        protected abstract bool IsTriggerable();
     }
 }

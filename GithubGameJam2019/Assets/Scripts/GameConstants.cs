@@ -20,5 +20,6 @@ namespace Drw.Core
         // Actions
         public const string k_ButtonNameFire1 = "Fire1";
         public const string k_ButtonNameFire2 = "Fire2";
+        public const string k_ButtonNameFire3 = "Fire3";
     }
 }

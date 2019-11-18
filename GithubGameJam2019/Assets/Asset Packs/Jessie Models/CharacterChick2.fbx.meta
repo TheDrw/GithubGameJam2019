@@ -229,7 +229,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.7219295
-        functionName: AnimationHit
+        functionName: AnimationSpecialOneHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -307,7 +307,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Chick punch
       takeName: Armature|Chick punch
-      internalID: 0
+      internalID: -4277110219482446663
       firstFrame: 0
       lastFrame: 6
       wrapMode: 0
@@ -330,7 +330,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.83023256
-        functionName: AnimationHit
+        functionName: AnimationDefaultHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

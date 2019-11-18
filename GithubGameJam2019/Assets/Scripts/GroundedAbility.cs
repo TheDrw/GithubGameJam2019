@@ -4,21 +4,20 @@ using UnityEngine;
 
 namespace Drw.CharacterSystems
 {
+    [CreateAssetMenu(menuName = "Abilities/Grounded Ability")]
     public class GroundedAbility : Ability
     {
         public override void Initialize(GameObject obj)
         {
-            throw new System.NotImplementedException();
         }
 
         public override void TriggerAbility()
         {
-            throw new System.NotImplementedException();
         }
 
-        protected override bool IsTriggerable()
+        public void ActivateGroundAbility()
         {
-            throw new System.NotImplementedException();
+
         }
     }
 }

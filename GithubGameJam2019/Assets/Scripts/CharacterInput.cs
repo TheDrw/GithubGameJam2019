@@ -61,6 +61,14 @@ namespace Drw.CharacterSystems
             }
         }
 
+        public bool SwitchCharacterButtonDown
+        {
+            get
+            {
+                return Input.GetButtonDown(GameConstants.k_ButtonNameFire3);
+            }
+        }
+
         public void LockAllInputs()
         {
             throw new System.NotImplementedException();

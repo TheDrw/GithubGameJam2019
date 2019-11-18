@@ -1,18 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Drw.CharacterSystems
 {
     /// <summary>
-    /// This is about to get messy.
+    /// This is about to get messy fast.
     /// </summary>
     [CreateAssetMenu(menuName = "CharacterStateMachine")]
     public class CharacterStateMachine : ScriptableObject
     {
         /// <summary>
         /// If the state that was set was successfully set, this will return true.
-        /// Should really only be called after SetCharacterState(...), otherwise will return wrong results.
+        /// Should really only be called right after SetCharacterState(...), otherwise will return wrong results.
         /// Not sure if this is the best way.
         /// </summary>
         public bool WasSetStateSuccessful { get; private set; }
@@ -21,6 +22,14 @@ namespace Drw.CharacterSystems
         private CharacterState previousState = CharacterState.Idle;
         private IScheduler previousSchedule = null;
 
+        /// <summary>
+        /// Sets the character state. If the state is the same as the previous, it will exit.
+        /// When switching to the next state, the previous state will cancel its action.
+        /// If state switch was successful, you can call WasSetStateSuccessful right after
+        /// to see if it was set.
+        /// </summary>
+        /// <param name="setState"></param>
+        /// <param name="currentSchedule"></param>
         public void SetCharacterState(CharacterState setState, IScheduler currentSchedule = null)
         {
             // Reset to always false unless set was successful or if currState is setstate
@@ -48,6 +57,9 @@ namespace Drw.CharacterSystems
                 case CharacterState.Attacking:
                     SetToAttackingState(setState);
                     break;
+                case CharacterState.Switching:
+                    SetToSwitchingState(setState);
+                    break;
                 default:
                     CurrentState = CharacterState.Idle;
                     WasSetStateSuccessful = true;
@@ -57,10 +69,22 @@ namespace Drw.CharacterSystems
             if (WasSetStateSuccessful)
             {
                 Debug.Log($"Switching from {previousState} to {setState} and canceling {previousSchedule}");
+
                 if(previousSchedule != null)
                     previousSchedule.Cancel();
 
                 previousSchedule = currentSchedule;
+            }
+        }
+
+        private void SetToSwitchingState(CharacterState setState)
+        {
+            if(CurrentState == CharacterState.Grounded || 
+                CurrentState == CharacterState.Moving)
+            {
+                WasSetStateSuccessful = true;
+                previousState = CurrentState;
+                CurrentState = setState;
             }
         }
 

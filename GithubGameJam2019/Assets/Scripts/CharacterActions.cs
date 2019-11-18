@@ -1,24 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Drw.Interactables;
 
 namespace Drw.CharacterSystems
 {
     public class CharacterActions : MonoBehaviour, IScheduler
     {
         [SerializeField] CharacterInput input;
-        [SerializeField] GameObject spring;
-        [SerializeField] GameObject projectile;
         [SerializeField] CharacterStateMachine stateMachine;
 
         Animator animator;
         CharacterScheduler scheduler;
+        CharacterSkills characterSkills;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             scheduler = GetComponent<CharacterScheduler>();
+            characterSkills = GetComponent<CharacterSkills>();
             if (stateMachine == null)
             {
                 Debug.LogError($"State machine missing on {name}");
@@ -35,6 +34,19 @@ namespace Drw.CharacterSystems
             {
                 SpecialAbilityOne();
             }
+            else if(input.SwitchCharacterButtonDown) 
+            {
+                SwitchCharacter();
+            }
+        }
+
+        void SwitchCharacter()
+        {
+            var characterSwitch = GetComponentInParent<ICharacterSwitch>();
+            if(characterSwitch != null)
+            {
+                characterSwitch.Switch(transform.position, transform.rotation);
+            }
         }
 
         void DefaultAbility()
@@ -42,13 +54,17 @@ namespace Drw.CharacterSystems
             stateMachine.SetCharacterState(CharacterState.Attacking, this);
             if (stateMachine.WasSetStateSuccessful)
             {
-                animator.SetTrigger("defaultAbility");
+                characterSkills.DefaultAbility();
             }
         }
 
-        void AnimationHit()
+        void SpecialAbilityOne()
         {
-            print("POW");
+            stateMachine.SetCharacterState(CharacterState.Casting, this);
+            if (stateMachine.WasSetStateSuccessful)
+            {
+                characterSkills.SpecialAbilityOne();
+            }
         }
 
         void AnimationDone()
@@ -57,34 +73,11 @@ namespace Drw.CharacterSystems
             stateMachine.SetCharacterState(CharacterState.Idle, null);
         }
 
-        void SpecialAbilityOne()
-        {
-            stateMachine.SetCharacterState(CharacterState.Casting, this);
-            if (stateMachine.WasSetStateSuccessful)
-            {
-                StartCoroutine(SpecialAbilityOneRoutine());
-            }
-        }
-
-        IEnumerator SpecialAbilityOneRoutine()
-        {
-            animator.SetTrigger("abilityOne");
-            yield return new WaitForSeconds(1.2f);
-            Instantiate
-                (
-                    spring,
-                    transform.position + transform.forward * 4f + Vector3.down,
-                    Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f)
-                );
-
-            stateMachine.SetCharacterState(CharacterState.Idle, null);
-        }
-
         public void Cancel()
         {
-            print("cancel all actions");
+            //print("cancel all actions");
             //animator.ResetTrigger("attack1");
-            StopAllCoroutines();
+            //StopAllCoroutines();
         }
     }
 }
