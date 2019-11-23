@@ -4,11 +4,11 @@ ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
+      74: -2005363199323996230
+    second: Armature|DudeHitDamage
+  - first:
       74: 6206488828576206821
     second: Armature|FirstManLanding
-  - first:
-      74: 5847405531152325894
-    second: Armature|FirstManLanding.001
   - first:
       74: -295424664635853446
     second: Armature|GuyLanding
@@ -16,44 +16,26 @@ ModelImporter:
       74: -8945691123924629249
     second: Armature|Idle
   - first:
-      74: 4106399916549189888
-    second: Armature|Idle.001
-  - first:
       74: 7287720338792871310
     second: Armature|ManFall
-  - first:
-      74: 5509237413833360097
-    second: Armature|ManFall.001
   - first:
       74: 6995406950531458601
     second: Armature|ManIdle
   - first:
-      74: -6029498470129554462
-    second: Armature|ManIdle.001
-  - first:
       74: -535980647531589547
     second: Armature|ManJump
-  - first:
-      74: 5038626414570449834
-    second: Armature|ManJump.001
   - first:
       74: 5742556125290166990
     second: Armature|ManLanding
   - first:
-      74: -5188719139827805173
-    second: Armature|ManLanding.001
+      74: -2366666930908691410
+    second: Armature|ManRoll
   - first:
       74: -1301326042468554654
     second: Armature|ManSkill
   - first:
-      74: 5983321916004964354
-    second: Armature|ManSkill.001
-  - first:
       74: 5767346402819725652
     second: Armature|ManStomp
-  - first:
-      74: 6861476720565196338
-    second: Armature|ManStomp.001
   - first:
       74: -7551964380084998518
     second: Armature|Run
@@ -70,7 +52,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 1
+    optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -88,6 +70,64 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
+    - serializedVersion: 16
+      name: Armature|DudeHitDamage
+      takeName: Armature|DudeHitDamage
+      internalID: -2005363199323996230
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|FirstManLanding
+      takeName: Armature|FirstManLanding
+      internalID: 6206488828576206821
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Armature|ManFall
       takeName: Armature|ManFall
@@ -205,6 +245,56 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Armature|ManRoll
+      takeName: Armature|ManRoll
+      internalID: -2366666930908691410
+      firstFrame: 0
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: AnimationDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: AnimationEvadeDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: AnimationEvadeBegin
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Armature|ManSkill
       takeName: Armature|ManSkill
       internalID: -1301326042468554654
@@ -229,14 +319,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.64764434
+      - time: 0.643038
         functionName: AnimationSpecialOneHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.97906977
+      - time: 1
         functionName: AnimationDone
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -272,7 +362,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6926407
+      - time: 0.6708861
         functionName: AnimationDefaultHit
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -358,8 +448,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -399,7 +489,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Armature
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

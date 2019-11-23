@@ -4,11 +4,20 @@ ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
+      74: -4277110219482446663
+    second: Armature|Chick punch
+  - first:
+      74: -6000167073131306884
+    second: Armature|ChickDash
+  - first:
       74: 1721122770279636162
     second: Armature|ChickFall
   - first:
       74: -3020828371055122226
     second: Armature|ChickIdle
+  - first:
+      74: 1719661280464773344
+    second: Armature|ChickIdle New
   - first:
       74: 8020762275819316026
     second: Armature|ChickJump
@@ -19,17 +28,20 @@ ModelImporter:
       74: -1725214599885682698
     second: Armature|ChickRun
   - first:
+      74: -8317207793919685188
+    second: Armature|ChickSkill
+  - first:
       74: -4254490539564406919
     second: Armature|ChickWalk
+  - first:
+      74: 2426127028376803560
+    second: Armature|HitDamage
   - first:
       74: -8945691123924629249
     second: Armature|Idle
   - first:
-      74: -8317207793919685188
-    second: Armature|ChickSkill
-  - first:
-      74: -4277110219482446663
-    second: Armature|Chick punch
+      74: 2757259117332887010
+    second: Armature|ChickDash (1)
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,17 +52,20 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 1
-    motionNodeName: <Root Transform>
+    optimizeGameObjects: 0
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event AnimationEvadeDone has a time (0.408818) outside
+      the clip's valid range (0.000000..0.333333). It will never be firedEvent AnimationDone
+      has a time (0.416667) outside the clip's valid range (0.000000..0.333333). It
+      will never be fired
     animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 1
+    animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -58,6 +73,99 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Chick punch
+      takeName: Armature|Chick punch
+      internalID: -4277110219482446663
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.8810127
+        functionName: AnimationDefaultHit
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: AnimationDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ChickDash
+      takeName: Armature|ChickDash
+      internalID: -6000167073131306884
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.9811626
+        functionName: AnimationEvadeDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: AnimationDone
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: AnimationEvadeBegin
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Armature|ChickFall
       takeName: Armature|ChickFall
@@ -117,6 +225,35 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Armature|ChickIdle New
+      takeName: Armature|ChickIdle New
+      internalID: 1719661280464773344
+      firstFrame: 0
+      lastFrame: 109
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Armature|ChickJump
       takeName: Armature|ChickJump
       internalID: 8020762275819316026
@@ -150,7 +287,7 @@ ModelImporter:
       takeName: Armature|ChickLanding
       internalID: 5959167833069051193
       firstFrame: 0
-      lastFrame: 19
+      lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -228,7 +365,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.7219295
+      - time: 0.69367087
         functionName: AnimationSpecialOneHit
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -276,40 +413,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
-      takeName: Armature|Idle
-      internalID: -8945691123924629249
+      name: Armature|HitDamage
+      takeName: Armature|HitDamage
+      internalID: 2426127028376803560
       firstFrame: 0
-      lastFrame: 99
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|Chick punch
-      takeName: Armature|Chick punch
-      internalID: -4277110219482446663
-      firstFrame: 0
-      lastFrame: 6
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -329,13 +437,6 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.83023256
-        functionName: AnimationDefaultHit
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 1
         functionName: AnimationDone
         data: 
@@ -343,6 +444,35 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      internalID: -8945691123924629249
+      firstFrame: 0
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -357,8 +487,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -389,252 +519,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: CharacterChick2(Clone)
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Armature
-      parentName: CharacterChick2(Clone)
-      position: {x: 0.021184817, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 100, y: 100, z: 100}
-    - name: Hips
-      parentName: Armature
-      position: {x: -0.00022576872, y: -0.00009457884, z: 0.009688924}
-      rotation: {x: 0.78743285, y: -0.017771075, z: -0.017524462, w: 0.61589503}
-      scale: {x: 0.9999998, y: 0.9999999, z: 0.9999999}
-    - name: Spine
-      parentName: Hips
-      position: {x: -2.7939677e-11, y: 0.0014632489, z: -7.334165e-11}
-      rotation: {x: -0.097836524, y: 0.011740188, z: -0.01973349, w: 0.9949376}
-      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999998}
-    - name: Chest
-      parentName: Spine
-      position: {x: 4.8894434e-11, y: 0.0022679244, z: 5.0058586e-11}
-      rotation: {x: -0.05603044, y: 0.01570213, z: 0.017239267, w: 0.9981567}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
-    - name: Bone.003
-      parentName: Chest
-      position: {x: -3.4924596e-12, y: 0.0022396771, z: 3.0413502e-10}
-      rotation: {x: 0.20468538, y: -0.16928451, z: -0.04708192, w: 0.9629278}
-      scale: {x: 0.99999994, y: 1, z: 1}
-    - name: Head
-      parentName: Bone.003
-      position: {x: 2.5145708e-10, y: 0.0007023774, z: 9.103678e-10}
-      rotation: {x: -0.15514857, y: 0.16131333, z: 0.04617611, w: 0.9735372}
-      scale: {x: 0.9999999, y: 0.9999998, z: 0.99999994}
-    - name: Head_end
-      parentName: Head
-      position: {x: -0, y: 0.0021841456, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Shoulder.L
-      parentName: Chest
-      position: {x: -0.00051139505, y: 0.002057146, z: -0.000023552224}
-      rotation: {x: 0.054439582, y: -0.19407043, z: 0.70955026, w: 0.67521214}
-      scale: {x: 0.99999994, y: 0.9999999, z: 1}
-    - name: Upper Arm.L
-      parentName: Shoulder.L
-      position: {x: -0.0000000014202669, y: 0.0013904503, z: -1.5832484e-10}
-      rotation: {x: 0.13191064, y: 0.11865401, z: -0.023439407, w: 0.9838554}
-      scale: {x: 0.9999999, y: 1.0000001, z: 0.99999994}
-    - name: Lower Arm.L
-      parentName: Upper Arm.L
-      position: {x: -0.0000000012037344, y: 0.0029041949, z: 1.11758706e-10}
-      rotation: {x: -0.028340913, y: 0.09285435, z: -0.02309585, w: 0.99500823}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Hand.L
-      parentName: Lower Arm.L
-      position: {x: 0.0000000013411044, y: 0.002542178, z: 1.4901161e-10}
-      rotation: {x: 0.018289588, y: -0.14248616, z: 0.0058887294, w: 0.9896103}
-      scale: {x: 1, y: 0.9999999, z: 0.99999994}
-    - name: Finger01.L
-      parentName: Hand.L
-      position: {x: 0.0000000022538005, y: 0.0008827235, z: 1.4901161e-10}
-      rotation: {x: -0.0025240902, y: 0.08352583, z: 0.07770774, w: 0.993468}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-    - name: Finger02.L
-      parentName: Finger01.L
-      position: {x: 3.1664968e-10, y: 0.0006541173, z: 0}
-      rotation: {x: 0.038162068, y: 0.008569552, z: 0.00085276057, w: 0.99923444}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999998}
-    - name: Finger02.L_end
-      parentName: Finger02.L
-      position: {x: -0, y: 0.00060793874, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Thumb01.L
-      parentName: Hand.L
-      position: {x: -0.00021387295, y: 0.0002661498, z: 0.0003149861}
-      rotation: {x: 0.30113703, y: 0.13102718, z: 0.0479887, w: 0.9433162}
-      scale: {x: 1, y: 1, z: 0.99999994}
-    - name: Thumb02.L
-      parentName: Thumb01.L
-      position: {x: 4.272442e-10, y: 0.0007692818, z: -2.9802322e-10}
-      rotation: {x: -0.0183441, y: -0.05520861, z: -0.025855497, w: 0.9979715}
-      scale: {x: 1, y: 1, z: 0.9999999}
-    - name: Thumb02.L_end
-      parentName: Thumb02.L
-      position: {x: -0, y: 0.0003614924, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Shoulder.R
-      parentName: Chest
-      position: {x: 0.00051139505, y: 0.0020571472, z: -0.000023551938}
-      rotation: {x: 0.124109305, y: 0.32979175, z: -0.674646, w: 0.6486039}
-      scale: {x: 1, y: 0.9999999, z: 0.9999999}
-    - name: Upper Arm.R
-      parentName: Shoulder.R
-      position: {x: 2.6484484e-10, y: 0.0013904504, z: 4.4354237e-10}
-      rotation: {x: 0.11839884, y: -0.12954654, z: 0.083975896, w: 0.98089117}
-      scale: {x: 0.9999999, y: 0.9999998, z: 1}
-    - name: Lower Arm.R
-      parentName: Upper Arm.R
-      position: {x: 8.9406965e-10, y: 0.002904194, z: 0.0000000012852251}
-      rotation: {x: 0.03011895, y: -0.34260282, z: -0.048280854, w: 0.93775547}
-      scale: {x: 0.99999994, y: 1, z: 0.99999994}
-    - name: Hand.R
-      parentName: Lower Arm.R
-      position: {x: 1.8626451e-11, y: 0.0025421767, z: -4.4703483e-10}
-      rotation: {x: -0.122115806, y: 0.027871331, z: 0.09403638, w: 0.9876579}
-      scale: {x: 0.9999999, y: 0.99999976, z: 0.9999999}
-    - name: Finger01.R
-      parentName: Hand.R
-      position: {x: 0.0000000018626451, y: 0.00088272314, z: 0}
-      rotation: {x: 0.084721886, y: -0.09958294, z: -0.16251934, w: 0.9780046}
-      scale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
-    - name: Finger02.R
-      parentName: Finger01.R
-      position: {x: -3.9115547e-10, y: 0.000654116, z: 1.4901161e-10}
-      rotation: {x: 0.03816227, y: -0.008569489, z: -0.0008529969, w: 0.99923444}
-      scale: {x: 0.9999998, y: 0.99999964, z: 0.9999998}
-    - name: Finger02.R_end
-      parentName: Finger02.R
-      position: {x: -0, y: 0.00060793874, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Thumb01.R
-      parentName: Hand.R
-      position: {x: 0.00021387618, y: 0.0002661495, z: 0.0003149861}
-      rotation: {x: 0.37388346, y: -0.12082868, z: -0.22957963, w: 0.8904521}
-      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-    - name: Thumb02.R
-      parentName: Thumb01.R
-      position: {x: 6.3329936e-10, y: 0.00076928263, z: -5.9604643e-10}
-      rotation: {x: -0.018341383, y: 0.05520768, z: 0.025855597, w: 0.9979716}
-      scale: {x: 1, y: 1, z: 0.99999994}
-    - name: Thumb02.R_end
-      parentName: Thumb02.R
-      position: {x: -0, y: 0.0003614924, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Upper Leg.L
-      parentName: Hips
-      position: {x: -0.0009458295, y: 0.0002841673, z: -0.00031804107}
-      rotation: {x: 0.11310143, y: 0.22904165, z: 0.9633163, w: 0.082278036}
-      scale: {x: 1.0000004, y: 1.0000012, z: 1.0000069}
-    - name: Lower Leg.L
-      parentName: Upper Leg.L
-      position: {x: 4.656613e-10, y: 0.0044191885, z: 3.7252902e-11}
-      rotation: {x: -0.31787416, y: 0.053302273, z: 0.054395884, w: 0.9450693}
-      scale: {x: 0.99999976, y: 0.99999315, z: 1.0000066}
-    - name: Foot.L
-      parentName: Lower Leg.L
-      position: {x: 2.9802322e-10, y: 0.0043142093, z: 1.11758706e-10}
-      rotation: {x: 0.19360363, y: 0.60831773, z: 0.22289869, w: 0.73673844}
-      scale: {x: 1.0000012, y: 0.9999974, z: 1.0000039}
-    - name: Toes.L
-      parentName: Foot.L
-      position: {x: 4.4703483e-10, y: 0.0010585372, z: 2.3981556e-10}
-      rotation: {x: 0.18047903, y: -0.50632566, z: -0.26573986, w: 0.8002775}
-      scale: {x: 0.99999994, y: 1, z: 0.9999999}
-    - name: Toes.L_end
-      parentName: Toes.L
-      position: {x: -0, y: 0.00063873513, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Upper Leg.R
-      parentName: Hips
-      position: {x: 0.00094582926, y: 0.0002841665, z: -0.00031804093}
-      rotation: {x: 0.05353937, y: 0.22076532, z: 0.9734682, w: -0.027495045}
-      scale: {x: 1.0000013, y: 1.0000019, z: 1.0000057}
-    - name: Lower Leg.R
-      parentName: Upper Leg.R
-      position: {x: 3.7252902e-11, y: 0.00441919, z: 1.8626451e-11}
-      rotation: {x: -0.30371255, y: 0.009013725, z: -0.0025171496, w: 0.9527178}
-      scale: {x: 0.9999997, y: 0.999994, z: 1.0000064}
-    - name: Foot.R
-      parentName: Lower Leg.R
-      position: {x: 3.259629e-11, y: 0.0043142093, z: 4.749745e-10}
-      rotation: {x: 0.26783893, y: 0.5394051, z: 0.21515046, w: 0.76877487}
-      scale: {x: 1.0000027, y: 1.0000007, z: 0.9999992}
-    - name: Toes.R
-      parentName: Foot.R
-      position: {x: 5.494803e-10, y: 0.0010585372, z: -6.984919e-11}
-      rotation: {x: 0.26613593, y: 0.45225924, z: 0.39061478, w: 0.7563421}
-      scale: {x: 0.9999998, y: 0.99999994, z: 0.9999998}
-    - name: Toes.R_end
-      parentName: Toes.R
-      position: {x: -0, y: 0.00063873513, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Leg IK.L
-      parentName: Armature
-      position: {x: -0.0026221685, y: 0.0028157567, z: 0.0052218377}
-      rotation: {x: 0.072773255, y: 0.8805756, z: -0.44111907, w: 0.15717737}
-      scale: {x: 0.99999994, y: 0.9999999, z: 1}
-    - name: Leg IK.L_end
-      parentName: Leg IK.L
-      position: {x: -0, y: 0.001684004, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Pole Target.L
-      parentName: Armature
-      position: {x: -0.0011841665, y: -0.0060303393, z: 0.005225573}
-      rotation: {x: 0.0000041275234, y: -0.018583719, z: 0.9998273, w: -0.000000056463072}
-      scale: {x: 1, y: 0.9999997, z: 0.99983764}
-    - name: Pole Target.L_end
-      parentName: Pole Target.L
-      position: {x: -0, y: 0.003107782, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Leg IK.R
-      parentName: Armature
-      position: {x: 0.00094735145, y: -0.0008717713, z: 0.00543101}
-      rotation: {x: 0.059527237, y: 0.91456014, z: -0.3989296, w: 0.029857963}
-      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
-    - name: Leg IK.R_end
-      parentName: Leg IK.R
-      position: {x: -0, y: 0.001684004, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Pole Target.R
-      parentName: Armature
-      position: {x: 0.0011841665, y: -0.0060303393, z: 0.005225573}
-      rotation: {x: 0.0000041275234, y: -0.018583719, z: 0.9998273, w: -0.000000056463072}
-      scale: {x: 1, y: 0.9999997, z: 0.99983764}
-    - name: Pole Target.R_end
-      parentName: Pole Target.R
-      position: {x: -0, y: 0.003107782, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Hair
-      parentName: CharacterChick2(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 100, y: 100, z: 100}
-    - name: Shoes
-      parentName: CharacterChick2(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 100, y: 100, z: 100}
-    - name: Untitled
-      parentName: CharacterChick2(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 100, y: 100, z: 100}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -643,9 +528,9 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Armature
+    rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

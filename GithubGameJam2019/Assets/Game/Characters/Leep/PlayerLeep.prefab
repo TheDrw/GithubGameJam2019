@@ -92,8 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 11400000, guid: 84f66c60113cb7743a9eec8dfabc8341, type: 2}
   defaultAbility: {fileID: 11400000, guid: 24d032d1ecbd9584597445a9127a3271, type: 2}
-  specialAbilityOne: {fileID: 11400000, guid: d1dce763005b6034786509cbcb92f305, type: 2}
-  specialAbilityTwo: {fileID: 0}
+  specialAbilityOne: {fileID: 11400000, guid: 0f6b29db1c19b43489a95012f424ad65, type: 2}
+  specialAbilityTwo: {fileID: 11400000, guid: 7a550b9980e217645accfc712049b43b, type: 2}
   projectilePosition: {fileID: 5517598877725567109}
 --- !u!1001 &520382238072612398
 PrefabInstance:
@@ -178,8 +178,7 @@ PrefabInstance:
         type: 3}
       propertyPath: specialAbilityOne
       value: 
-      objectReference: {fileID: 11400000, guid: d1dce763005b6034786509cbcb92f305,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3072570272010667544, guid: a9f19ce4c28cce7469898ebf4b22636f,
         type: 3}
       propertyPath: projectilePosition
@@ -195,6 +194,12 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 5cbdab49ad6c5e447ae17373719b8a34, type: 3}
+    - target: {fileID: -1930690271953884098, guid: a9f19ce4c28cce7469898ebf4b22636f,
+        type: 3}
+      propertyPath: stateMachine
+      value: 
+      objectReference: {fileID: 11400000, guid: 84f66c60113cb7743a9eec8dfabc8341,
+        type: 2}
     - target: {fileID: 4995642198414802114, guid: a9f19ce4c28cce7469898ebf4b22636f,
         type: 3}
       propertyPath: stateMachine

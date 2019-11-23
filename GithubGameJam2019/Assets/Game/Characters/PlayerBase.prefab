@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6675694907140815768}
   - component: {fileID: 4995642198414802114}
   - component: {fileID: 3072570272010667544}
+  - component: {fileID: -1930690271953884098}
   m_Layer: 8
   m_Name: PlayerBase
   m_TagString: Untagged
@@ -131,9 +132,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 4430c4f18f3f0e840b3ba8f776983288, type: 2}
-  spring: {fileID: 4844671055300727206, guid: b55e4dcb92ccbee408ef26b8a890a0c4, type: 3}
-  projectile: {fileID: 0}
   stateMachine: {fileID: 0}
-  projectilePosition: {fileID: 0}
-  defaultAbility: {fileID: 0}
-  specialAbilityOne: {fileID: 0}
+--- !u!114 &-1930690271953884098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675694907140815775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704eab314e204de4c83018e2f64d79a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
