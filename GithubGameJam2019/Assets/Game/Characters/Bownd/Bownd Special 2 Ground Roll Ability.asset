@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e2e5602b04013243a7d151ac7c70ddf, type: 3}
-  m_Name: Bownd Special Grounded Barrier Ability
+  m_Script: {fileID: 11500000, guid: 1ed9e36ccf282af408c5d6fcb393d19a, type: 3}
+  m_Name: Bownd Special 2 Ground Roll Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
   baseCooldown: 1
-  groundBarrier: {fileID: 6737208051957797159, guid: cb0072db68de5ac43852a3a4a0d43455,
-    type: 3}
+  groundAttack: {fileID: 0}

@@ -35,7 +35,7 @@ namespace Drw.CharacterSystems
             defaultAbilityLastActivatedTime = Time.time - characterSkills.DefaultAbilityCooldownTime;
             specialAbilityOneLastActivatedTime = Time.time - characterSkills.SpecialAbilityOneCooldownTime;
             specialAbilityTwoLastActivatedTime = Time.time - characterSkills.SpecialAbilityTwoCooldownTime;
-            characterSwitchLastActivatedTime = Time.time - characterSwitch.CharacterSwitchCooldownTime;
+            characterSwitchLastActivatedTime = Time.time - characterSwitch.BaseSwitchCooldownTime;
         }
 
         void Update()
@@ -57,8 +57,6 @@ namespace Drw.CharacterSystems
                 SwitchCharacter();
             }
         }
-
-
 
         void SwitchCharacter()
         {

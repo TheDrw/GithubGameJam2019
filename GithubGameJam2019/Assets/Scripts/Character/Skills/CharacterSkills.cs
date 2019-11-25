@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using Drw.CharacterSystems.Abilities;
+using Drw.UI;
 
 namespace Drw.CharacterSystems
 {
     public abstract class CharacterSkills : MonoBehaviour
     {
-        [SerializeField] protected CharacterStateMachine stateMachine;
         [SerializeField] protected Ability defaultAbility;
         [SerializeField] protected Ability specialAbilityOne;
         [SerializeField] protected Ability specialAbilityTwo;
@@ -17,5 +17,10 @@ namespace Drw.CharacterSystems
         public abstract void DefaultAbility();
         public abstract void SpecialAbilityOne();
         public abstract void SpecialAbilityTwo();
+
+        protected Animator animator;
+        protected CharacterController characterController;
+        protected CharacterMovement characterMovement;
+        protected AbilityCooldownTimer abilityCooldownTimer;
     }
 }

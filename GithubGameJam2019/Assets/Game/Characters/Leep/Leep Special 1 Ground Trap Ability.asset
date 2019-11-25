@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed9e36ccf282af408c5d6fcb393d19a, type: 3}
-  m_Name: Bownd Special Ground Roll Ability
+  m_Script: {fileID: 11500000, guid: d7f0572b6946948439fff86cb8304072, type: 3}
+  m_Name: Leep Special 1 Ground Trap Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
-  baseCooldown: 1
-  groundAttack: {fileID: 0}
+  baseCooldown: 5
+  groundTrap: {fileID: 172201384524897443, guid: b55e4dcb92ccbee408ef26b8a890a0c4,
+    type: 3}

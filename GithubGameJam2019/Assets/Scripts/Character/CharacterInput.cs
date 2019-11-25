@@ -5,6 +5,9 @@ using Drw.Core;
 
 namespace Drw.CharacterSystems
 {
+    /// <summary>
+    /// Button macros https://answers.unity.com/storage/temp/134371-xbox-one-controller-unity-windows-macos.jpg
+    /// </summary>
     [CreateAssetMenu(menuName = "CharacterInput")]
     public class CharacterInput : ScriptableObject, IInput
     {
@@ -49,7 +52,10 @@ namespace Drw.CharacterSystems
         {
             get
             {
-                return Input.GetButtonDown(GameConstants.k_ButtonNameFire1);
+                bool gamepadRightTriggerActivated = Input.GetAxis(GameConstants.k_RightTrigger) > 0f;
+
+                return Input.GetButtonDown(GameConstants.k_ButtonNameFire1) 
+                    || gamepadRightTriggerActivated;
             }
         }
 
@@ -57,7 +63,10 @@ namespace Drw.CharacterSystems
         {
             get
             {
-                return Input.GetButtonDown(GameConstants.k_ButtonNameFire2);
+                bool gamepadLeftTriggerActivated = Input.GetAxis(GameConstants.k_LeftTrigger) < 0f;
+
+                return Input.GetButtonDown(GameConstants.k_ButtonNameFire2)
+                    || gamepadLeftTriggerActivated;
             }
         }
 
@@ -99,7 +108,6 @@ namespace Drw.CharacterSystems
 
         float GetMouseOrStickLookAxis(string mouseInputName, string stickInputName)
         {
-
             return 1f;
         }
     }

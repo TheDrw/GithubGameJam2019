@@ -15,7 +15,7 @@ namespace Drw.CharacterSystems.Abilities
             throw new System.NotImplementedException();
         }
 
-        public override void TriggerAbility(Transform setTransform, Quaternion setQuaternion)
+        public override void TriggerAbility(Transform setTransform, Quaternion setQuaternion, CharacterMovement characterMovement = null)
         {
             var go = Instantiate(
                 groundBarrier, 

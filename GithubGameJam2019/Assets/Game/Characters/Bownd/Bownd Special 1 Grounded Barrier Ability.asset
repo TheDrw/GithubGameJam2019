@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7f0572b6946948439fff86cb8304072, type: 3}
-  m_Name: Leep Special Ground Trap Ability
+  m_Script: {fileID: 11500000, guid: 4e2e5602b04013243a7d151ac7c70ddf, type: 3}
+  m_Name: Bownd Special 1 Grounded Barrier Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
-  baseCooldown: 10
-  groundTrap: {fileID: 172201384524897443, guid: b55e4dcb92ccbee408ef26b8a890a0c4,
+  baseCooldown: 6
+  groundBarrier: {fileID: 6737208051957797159, guid: cb0072db68de5ac43852a3a4a0d43455,
     type: 3}

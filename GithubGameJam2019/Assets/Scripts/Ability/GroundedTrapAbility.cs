@@ -14,7 +14,7 @@ namespace Drw.CharacterSystems.Abilities
         {
         }
 
-        public override void TriggerAbility(Transform setTransform, Quaternion setQuaternion)
+        public override void TriggerAbility(Transform setTransform, Quaternion setQuaternion, CharacterMovement characterMovement = null)
         {
             var go = Instantiate(
                 groundTrap,

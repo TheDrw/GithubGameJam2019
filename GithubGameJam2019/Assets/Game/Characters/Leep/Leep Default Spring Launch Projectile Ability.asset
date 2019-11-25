@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Leep Default Spring Launch Projectile Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
-  baseCooldown: 2
+  baseCooldown: 1
   projectile: {fileID: 3912378553970864304, guid: cf1aed79cffe9c44aaf545e2cab00969,
     type: 3}

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Drw.Core
+﻿namespace Drw.Core
 {
     public static class GameConstants
     {
@@ -22,5 +18,8 @@ namespace Drw.Core
         public const string k_ButtonNameFire2 = "Fire2";
         public const string k_ButtonNameFire3 = "Fire3";
         public const string k_ButtonNameFire4 = "Fire4";
+
+        public const string k_RightTrigger = "RightTrigger";
+        public const string k_LeftTrigger = "LeftTrigger";
     }
 }

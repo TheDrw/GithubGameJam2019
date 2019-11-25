@@ -113,9 +113,9 @@ namespace Drw.CharacterSystems
 
         private void SetToAttackingState(CharacterState setState)
         {
-            if(CurrentState != CharacterState.Casting 
-                && CurrentState != CharacterState.Airborne
-                && CurrentState != CharacterState.Evading) 
+            if(CurrentState != CharacterState.Airborne 
+                && CurrentState != CharacterState.Casting
+                && CurrentState != CharacterState.Evading)
             {
                 ConfirmSetState(setState);
             }
@@ -127,15 +127,14 @@ namespace Drw.CharacterSystems
                 && CurrentState != CharacterState.Attacking
                 && CurrentState != CharacterState.Evading)
             {
+                
                 ConfirmSetState(setState);
             }
         }
 
         private void SetToGroundedState(CharacterState setState)
         {
-            if (CurrentState != CharacterState.Casting
-                && CurrentState != CharacterState.Attacking
-                && CurrentState != CharacterState.Evading)
+            if (!IsPerformingAction())
             {
                 ConfirmSetState(setState);
             }
@@ -148,9 +147,7 @@ namespace Drw.CharacterSystems
 
         private void SetToMovingState(CharacterState setState)
         {
-            if (CurrentState != CharacterState.Casting 
-                && CurrentState != CharacterState.Attacking
-                && CurrentState != CharacterState.Evading)
+            if (!IsPerformingAction())
             {
                 ConfirmSetState(setState);
             }
@@ -163,7 +160,7 @@ namespace Drw.CharacterSystems
             CurrentState = setState;
         }
 
-        private bool IsPerformingAction()
+        public bool IsPerformingAction()
         {
             return CurrentState == CharacterState.Casting
                 || CurrentState == CharacterState.Attacking

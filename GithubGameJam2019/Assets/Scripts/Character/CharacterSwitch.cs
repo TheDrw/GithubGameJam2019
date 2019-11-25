@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 namespace Drw.CharacterSystems
 {
     public class CharacterSwitch : MonoBehaviour, ICharacterSwitch, IScheduler
     {
+        public event Action OnCharacterSwitch = delegate { };
+        public float BaseSwitchCooldownTime { get { return baseSwitchCooldownTime; } }
+
         [SerializeField] CharacterStateMachine stateMachine;
         [SerializeField] CinemachineFreeLook freeLookCam;
         [SerializeField] GameObject playerLeep;
         [SerializeField] GameObject playerBownd;
         [SerializeField] GameObject followPlayer;
-        [SerializeField] float characterSwitchCooldownTime = 5f;
-
-        public float CharacterSwitchCooldownTime { get { return characterSwitchCooldownTime; } }
+        [SerializeField] float baseSwitchCooldownTime = 5f;
 
         float characterSwitchLastActivatedTime;
 
@@ -32,7 +34,7 @@ namespace Drw.CharacterSystems
         private void Start()
         {
             DefaultCharacterStart();
-            characterSwitchLastActivatedTime = Time.time - characterSwitchCooldownTime;
+            characterSwitchLastActivatedTime = Time.time - baseSwitchCooldownTime;
         }
 
         private void DefaultCharacterStart()
@@ -46,14 +48,16 @@ namespace Drw.CharacterSystems
         // i am only ever gonna have these two characters, so i thikn this is fine the way it is implemented.
         public void Switch(Vector3 setPosition, Quaternion setRotation)
         {
-            if (Time.time - characterSwitchLastActivatedTime > characterSwitchCooldownTime)
+            if (Time.time - characterSwitchLastActivatedTime > baseSwitchCooldownTime)
             {
                 stateMachine.SetCharacterState(CharacterState.CharacterSwitching, this);
                 if (stateMachine.WasSetStateSuccessful)
                 {
                     print("Switching Character");
+                    OnCharacterSwitch();
+
                     const float wontGetStuckAndGlitchEverywhereValue = 0.5f;
-                    var setWithOffset = Vector3.up * wontGetStuckAndGlitchEverywhereValue + setPosition;
+                    Vector3 setWithOffset = Vector3.up * wontGetStuckAndGlitchEverywhereValue + setPosition;
 
                     if (playerLeep.activeSelf) // TURN OFF LEEP
                     {
@@ -70,7 +74,7 @@ namespace Drw.CharacterSystems
             else
             {
                 print($"Character Switch not ready yet --  " +
-                    $"{ 100f * (Time.time - characterSwitchLastActivatedTime) / characterSwitchCooldownTime }" +
+                    $"{ 100f * (Time.time - characterSwitchLastActivatedTime) / baseSwitchCooldownTime }" +
                     $"% ready");
             }
         }

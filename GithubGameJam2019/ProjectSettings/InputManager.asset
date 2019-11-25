@@ -182,43 +182,43 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire1
-    descriptiveName: 
+    m_Name: RightTrigger
+    descriptiveName: gamepad default ability
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 0
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
+    gravity: 0
+    dead: 0.1
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 2
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire2
-    descriptiveName: 
+    m_Name: LeftTrigger
+    descriptiveName: gamepad special 1
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick button 1
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
+    gravity: 0
+    dead: 0.1
     sensitivity: 1000
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 2
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire3
-    descriptiveName: 
+    descriptiveName: gamepad special 2 evade
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 2
+    positiveButton: joystick button 4
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -234,7 +234,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 3
+    positiveButton: joystick button 5
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -327,7 +327,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire4
-    descriptiveName: keyboard fire 4
+    descriptiveName: keyboard fire 4 switch character
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: q
@@ -343,10 +343,10 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire4
-    descriptiveName: gamepad button
+    descriptiveName: gamepad button Switch Character
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 5
+    positiveButton: joystick button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

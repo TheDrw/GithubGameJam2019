@@ -1,49 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Drw.UI;
 
 namespace Drw.CharacterSystems
 {
     public class BowndSkills : CharacterSkills
     {
-        Animator animator;
-
         readonly string defaultAbilityAnimName = "defaultAbility";
         readonly string specialAbilityOneAnimName = "abilityOne";
         readonly string specialAbilityTwoAnimName = "abilityTwo";
 
-        bool active = false;
+        bool isSpecialAbilityTwoActive = false;
 
         private void Awake()
         {
+            if (defaultAbility == null)
+            {
+                Debug.LogError($"Default Ability is missing on {this}");
+            }
+
+            if (specialAbilityOne == null)
+            {
+                Debug.LogError($"Special Ability 1 is missing on {this}");
+            }
+
+            if(specialAbilityTwo == null)
+            {
+                Debug.LogError($"Special Ability 2 is missing on {this}");
+            }
+
             animator = GetComponent<Animator>();
+            characterController = GetComponent<CharacterController>();
+            characterMovement = GetComponent<CharacterMovement>();
+            abilityCooldownTimer = GetComponentInChildren<AbilityCooldownTimer>();
         }
 
         public override void DefaultAbility()
         {
             animator.SetTrigger(defaultAbilityAnimName);
+            abilityCooldownTimer.StartDefaultAbilityCooldown();
         }
 
         public override void SpecialAbilityOne()
         {
             animator.SetTrigger(specialAbilityOneAnimName);
+            abilityCooldownTimer.StartSpecialAbilityOneCooldown();
         }
 
         public override void SpecialAbilityTwo()
         {
             animator.SetTrigger(specialAbilityTwoAnimName);
+            abilityCooldownTimer.StartSpecialAbilityTwoCooldown();
         }
 
         IEnumerator SpecialAbilityTwoRoutine()
         {
-            var characterController = GetComponent<CharacterController>();
-            var characterMovement = GetComponent<CharacterMovement>();
             characterMovement.enabled = false;
-
             float rollMovementSpeed = 12f;
             float rollGravity = -10f;
-            active = true;
-            while (active)
+            isSpecialAbilityTwoActive = true;
+
+            while (isSpecialAbilityTwoActive)
             {
                 Vector3 dir = transform.forward * rollMovementSpeed + transform.up * rollGravity;
                 characterController.Move(dir * Time.deltaTime);
@@ -70,7 +88,7 @@ namespace Drw.CharacterSystems
 
         void AnimationEvadeDone()
         {
-            active = false;
+            isSpecialAbilityTwoActive = false;
         }
     }
 }
