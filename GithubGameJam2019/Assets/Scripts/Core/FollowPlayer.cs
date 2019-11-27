@@ -14,7 +14,7 @@ namespace Drw.Core
     {
         [SerializeField] GameObject playerLeep;
         [SerializeField] GameObject playerBownd;
-        float step = 0.025f;
+        [SerializeField] float followStep = 0.025f;
 
         private void Awake()
         {
@@ -26,9 +26,9 @@ namespace Drw.Core
         void Update()
         {
             if (playerLeep.activeSelf)
-                transform.position = Vector3.Lerp(transform.position, playerLeep.transform.position, step);
+                transform.position = Vector3.Lerp(transform.position, playerLeep.transform.position, followStep);
             else if (playerBownd.activeSelf)
-                transform.position = Vector3.Lerp(transform.position, playerBownd.transform.position, step);
+                transform.position = Vector3.Lerp(transform.position, playerBownd.transform.position, followStep);
         }
     }
 }

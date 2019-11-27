@@ -7,10 +7,9 @@ namespace Drw.Combat
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] float speed = 10f;
-        [SerializeField] int damage = 5;
-        [SerializeField] BattleConfig weaponConfig;
+        [SerializeField] CombatConfig weaponConfig;
         Rigidbody rb;
+        bool isProjectileUsed = false;
 
         private void Awake()
         {
@@ -20,18 +19,22 @@ namespace Drw.Combat
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (isProjectileUsed) return;
+            
             rb.useGravity = true;
             var damageable = collision.gameObject.GetComponent<IDamageable>();
             if(damageable != null)
             {
-                damageable.Damage(damage);
+                damageable.Damage(weaponConfig.BaseDamage);
             }
+
+            isProjectileUsed = true;
         }
 
         private void OnEnable()
         {
             StartCoroutine(DeactivateTimerRoutine());
-            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+            rb.AddForce(transform.forward * weaponConfig.BaseSpeed, ForceMode.Impulse);
         }
 
         private void OnDisable()
@@ -48,7 +51,7 @@ namespace Drw.Combat
 
         IEnumerator DeactivateTimerRoutine()
         {
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(8f);
             DisableProjectile();
         }
     }

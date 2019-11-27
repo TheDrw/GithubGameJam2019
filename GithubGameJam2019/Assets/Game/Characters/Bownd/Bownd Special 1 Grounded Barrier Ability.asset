@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bownd Special 1 Grounded Barrier Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
-  baseCooldown: 6
+  baseCooldown: 3
   groundBarrier: {fileID: 6737208051957797159, guid: cb0072db68de5ac43852a3a4a0d43455,
     type: 3}
+  spawnOffset: {x: 0, y: 0, z: 0}

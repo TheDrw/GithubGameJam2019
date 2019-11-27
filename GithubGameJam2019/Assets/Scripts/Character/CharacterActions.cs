@@ -74,12 +74,12 @@ namespace Drw.CharacterSystems
                     defaultAbilityLastActivatedTime = Time.time;
                 }
             }
-            else
-            {
-                print($"Default ability not ready yet -- time left: " +
-                    $"{ 100f * (Time.time - defaultAbilityLastActivatedTime) / characterSkills.DefaultAbilityCooldownTime }" +
-                    $"%");
-            }
+            //else
+            //{
+            //    print($"Default ability not ready yet -- time left: " +
+            //        $"{ 100f * (Time.time - defaultAbilityLastActivatedTime) / characterSkills.DefaultAbilityCooldownTime }" +
+            //        $"%");
+            //}
         }
 
         void SpecialAbilityOne()
@@ -93,12 +93,12 @@ namespace Drw.CharacterSystems
                     specialAbilityOneLastActivatedTime = Time.time;
                 }
             }
-            else
-            {
-                print($"Special ability 1 not ready yet -- time left: " +
-                    $"{ 100f * (Time.time - specialAbilityOneLastActivatedTime) / characterSkills.SpecialAbilityOneCooldownTime }" +
-                    $"%");
-            }
+            //else
+            //{
+            //    print($"Special ability 1 not ready yet -- time left: " +
+            //        $"{ 100f * (Time.time - specialAbilityOneLastActivatedTime) / characterSkills.SpecialAbilityOneCooldownTime }" +
+            //        $"%");
+            //}
         }
 
         private void SpecialAbilityTwo()
@@ -112,23 +112,12 @@ namespace Drw.CharacterSystems
                     specialAbilityTwoLastActivatedTime = Time.time;
                 }
             }
-            else
-            {
-                print($"Special ability 2 not ready yet -- time left: " +
-                    $"{ 100f * (Time.time - specialAbilityTwoLastActivatedTime) / characterSkills.SpecialAbilityTwoCooldownTime }" +
-                    $"%");
-            }
-        }
-
-        /// <summary>
-        /// this is universal for all actions that have some sort of end to it after an action
-        /// i am not sure about this but i think it is ok. 
-        /// it might  be better to make a script of all of the characters animations triggers
-        /// and centralize it or something. at the moment, it is kind of scattered around
-        /// </summary>
-        void AnimationDone()
-        {
-            stateMachine.SetCharacterState(CharacterState.Idle, null);
+            //else
+            //{
+            //    print($"Special ability 2 not ready yet -- time left: " +
+            //        $"{ 100f * (Time.time - specialAbilityTwoLastActivatedTime) / characterSkills.SpecialAbilityTwoCooldownTime }" +
+            //        $"%");
+            //}
         }
 
         public void Cancel()

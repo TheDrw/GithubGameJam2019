@@ -2,44 +2,42 @@
 using System;
 using UnityEngine;
 using Drw.CharacterSystems;
+using RoboRyanTron.Variables;
 
 namespace Drw.Attributes
 {
     public class Health : MonoBehaviour, IDamageable, IHealable
     {
+        public event Action<int> onDied = delegate { };
         public event Action<int> onReceivedDamage = delegate { };
         public event Action<int> onReceviedHeal = delegate { };
 
-        [SerializeField] CharacterStateMachine stateMachine;
-        [SerializeField] int maxHealthPoints = 100;
+        [SerializeField] IntegerVariable maxHealthPoints; 
         bool isDead;
-        Animator animator;
         int healthPoints;
 
         private void Awake()
         {
-            animator = GetComponent<Animator>();
-            if(stateMachine == null)
+            if(maxHealthPoints == null)
             {
-                Debug.LogError($"Missing stateMachine on {this}");
+                Debug.LogError($"{maxHealthPoints} missing on {this} {gameObject}");
             }
-            healthPoints = maxHealthPoints;
+            healthPoints = maxHealthPoints.Value;
         }
 
         public void Damage(int damageAmount)
         {
-            print($"{name} took damage");
-            healthPoints = Mathf.Clamp(healthPoints - damageAmount, 0, maxHealthPoints);
+            print($"{name} took {damageAmount} pts of damage");
+            healthPoints = Mathf.Clamp(healthPoints - damageAmount, 0, maxHealthPoints.Value);
             if (healthPoints > 0)
             {
-                animator.SetTrigger("gotHit");
+                onReceivedDamage(damageAmount);
             }
-            else
+            else if(healthPoints == 0 && !isDead)
             {
-                animator.SetTrigger("died");
+                isDead = true;
+                onDied(damageAmount);
             }
-            onReceivedDamage(damageAmount);
-            //stateMachine.SetCharacterState(CharacterState.GotHit);
         }
 
         public void Heal(int healAmount)

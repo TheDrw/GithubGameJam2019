@@ -9,6 +9,7 @@ namespace Drw.CharacterSystems.Abilities
     public class GroundedBarrierAbility : Ability
     {
         [SerializeField] GroundBarrier groundBarrier;
+        [SerializeField] Vector3 spawnOffset;
 
         public override void Initialize(GameObject obj)
         {
@@ -19,7 +20,7 @@ namespace Drw.CharacterSystems.Abilities
         {
             var go = Instantiate(
                 groundBarrier, 
-                setTransform.position + (-1) * setTransform.up * 0.5f, 
+                setTransform.position + (-1) * setTransform.up * 0.25f, 
                 setQuaternion);
 
             go.gameObject.SetActive(true);

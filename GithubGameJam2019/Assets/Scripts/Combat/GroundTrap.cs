@@ -7,7 +7,7 @@ namespace Drw.Combat
     [RequireComponent(typeof(Rigidbody))]
     public class GroundTrap : MonoBehaviour
     {
-        [SerializeField] BattleConfig battleConfig;
+        [SerializeField] CombatConfig combatConfig;
         Rigidbody rb;
 
         private void OnEnable()
@@ -18,7 +18,7 @@ namespace Drw.Combat
         IEnumerator DeactivateTimerRoutine()
         {
             yield return new WaitForSeconds(8f);
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

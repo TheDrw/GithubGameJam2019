@@ -19,11 +19,13 @@ namespace Drw.Core
         private void OnEnable()
         {
             health.onReceivedDamage += SpawnDamageText;
+            health.onDied += SpawnDamageText;
         }
 
         private void OnDisable()
         {
             health.onReceivedDamage -= SpawnDamageText;
+            health.onDied -= SpawnDamageText;
         }
 
         void SpawnDamageText(int damage)

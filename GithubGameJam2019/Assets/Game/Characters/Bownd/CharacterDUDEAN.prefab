@@ -439,17 +439,17 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3045898786352072892}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4288583467269203127, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
-  - {fileID: -1536519034987021355, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
+  - {fileID: 2100000, guid: edc953729e6e451489568faf5be4e8d2, type: 2}
+  - {fileID: 2100000, guid: edc953729e6e451489568faf5be4e8d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1024,19 +1024,19 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5389081459332776743}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -414921334540547795, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
-  - {fileID: -5637652675625914632, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
-  - {fileID: -1536519034987021355, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
-  - {fileID: 4835078630258379571, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
+  - {fileID: 2100000, guid: 097e242bb88849f4bbb9c31130c222b9, type: 2}
+  - {fileID: 2100000, guid: 097e242bb88849f4bbb9c31130c222b9, type: 2}
+  - {fileID: 2100000, guid: 097e242bb88849f4bbb9c31130c222b9, type: 2}
+  - {fileID: 2100000, guid: 097e242bb88849f4bbb9c31130c222b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1515,16 +1515,16 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7775735009190723727}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4156711385485655482, guid: 82d85edec9c988646871da0c19f4d131, type: 3}
+  - {fileID: 2100000, guid: c2a04fa94e76adc40b36c042a0d6ec25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
