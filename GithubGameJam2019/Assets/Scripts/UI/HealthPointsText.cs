@@ -17,13 +17,16 @@ namespace Drw.UI
             if (healthPointsText == null) healthPointsText = GetComponentInChildren<TMP_Text>();
         }
 
+        private void Start()
+        {
+            UpdateHealthPointsText(0, 0f, health.CurrentHealthPoints, health.MaxHealthPoints);
+        }
+
         private void OnEnable()
         {
             health.OnReceivedDamage += UpdateHealthPointsText;
             health.OnDied += UpdateHealthPointsText;
             health.OnReceviedHeal += UpdateHealthPointsText;
-
-            UpdateHealthPointsText(0, 0f, health.CurrentHealthPoints, health.MaxHealthPoints);
         }
 
         private void OnDisable()
