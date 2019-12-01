@@ -8,7 +8,7 @@ namespace Drw.CharacterSystems.Abilities
     [CreateAssetMenu(menuName = "Abilities/Grounded Ability")]
     public class GroundedAbility : Ability
     {
-        [SerializeField] GroundAttack groundAttack;
+        [SerializeField] GroundAttack groundAttack = null;
 
         public override void Initialize(GameObject obj)
         {

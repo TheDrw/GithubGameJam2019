@@ -21,5 +21,13 @@
 
         public const string k_RightTrigger = "RightTrigger";
         public const string k_LeftTrigger = "LeftTrigger";
+
+        public const string k_ForwardSpeedAnimWord = "forwardSpeed";
+        public const string k_GotHitAnimWord = "gotHit";
+        public const string k_DiedAnimWord = "died";
+        public const string k_AttackAnimWord = "attack";
+
+        public const int k_PlayerLayer = 8;
+        public const int k_OnlyDetectPlayerLayer = 12;
     }
 }

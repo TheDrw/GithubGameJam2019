@@ -10,7 +10,7 @@ namespace Drw.CharacterSystems
     /// 
     /// I've considered this https://gameprogrammingpatterns.com/state.html but I am too noob to do it.
     /// I also know about Jason's implementations of state machine in https://youtu.be/YdERlPfwUb0 and have
-    /// even transcribed the 
+    /// even transcribed the solution, but not sure if I have enough time to implement it in this jam. maybe afterwards.
     /// </summary>
     [CreateAssetMenu(menuName = "CharacterStateMachine")]
     public class CharacterStateMachine : ScriptableObject
@@ -70,6 +70,9 @@ namespace Drw.CharacterSystems
                 case CharacterState.Evading:
                     SetToEvadingState(setState);
                     break;
+                case CharacterState.Dead:
+                    SetToDeadState(setState);
+                    break;
                 default:
                     CurrentState = CharacterState.Idle;
                     WasSetStateSuccessful = true;
@@ -85,6 +88,11 @@ namespace Drw.CharacterSystems
 
                 previousSchedule = currentSchedule;
             }
+        }
+
+        private void SetToDeadState(CharacterState setState)
+        {
+            ConfirmSetState(setState);
         }
 
         private void SetToEvadingState(CharacterState setState)
@@ -104,7 +112,8 @@ namespace Drw.CharacterSystems
 
         private void SetToCharacterSwitchingState(CharacterState setState)
         {
-            if(CurrentState == CharacterState.Grounded 
+            if( CurrentState == CharacterState.Dead
+                ||CurrentState == CharacterState.Grounded 
                 || CurrentState == CharacterState.Moving)
             {
                 ConfirmSetState(setState);

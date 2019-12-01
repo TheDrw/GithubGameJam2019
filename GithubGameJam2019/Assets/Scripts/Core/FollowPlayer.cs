@@ -12,8 +12,8 @@ namespace Drw.Core
     /// </summary>
     public class FollowPlayer : MonoBehaviour
     {
-        [SerializeField] GameObject playerLeep;
-        [SerializeField] GameObject playerBownd;
+        [SerializeField] GameObject playerLeep = null;
+        [SerializeField] GameObject playerBownd = null;
         [SerializeField] float followStep = 0.025f;
 
         private void Awake()

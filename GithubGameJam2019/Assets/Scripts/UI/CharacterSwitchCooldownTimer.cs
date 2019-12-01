@@ -8,9 +8,9 @@ namespace Drw.UI
 {
     public class CharacterSwitchCooldownTimer : MonoBehaviour
     {
-        [SerializeField] ICharacterSwitch characterSwitch;
-        [SerializeField] Image characterSwitchDarkMask;
-        [SerializeField] TMP_Text timerText;
+        [SerializeField] Image characterSwitchDarkMask = null;
+        [SerializeField] TMP_Text timerText = null;
+        ICharacterSwitch characterSwitch;
 
         private void Awake()
         {

@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RoboRyanTron.Variables;
 
 namespace Drw.Interactables
 {
     public class SpringTrigger : MonoBehaviour
     {
-        [SerializeField] Animator animator;
+        [SerializeField] Animator animator = null;
+        [SerializeField] FloatVariable springForce = null;
 
         private void Awake()
         {
@@ -15,15 +17,20 @@ namespace Drw.Interactables
             {
                 animator = GetComponentInChildren<Animator>();
             }
-        }
 
-        [SerializeField] float springForce = 15f;
+            if(springForce == null)
+            {
+                Debug.LogError($"Missing springForce on {gameObject}");
+            }
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
-            var obj = other.transform.GetComponent<IMoveable>();
-            if (obj != null)
+            print(other.name);
+            var moveable = other.GetComponent<IMoveable>();
+            if (moveable != null)
             {
-                obj.Jump(springForce);
+                moveable.Jump(transform.up, springForce.Value);
                 animator.SetTrigger("bedBounce");
             }
         }

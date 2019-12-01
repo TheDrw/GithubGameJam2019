@@ -11,17 +11,17 @@ namespace Drw.UI
     // doing it manually is ok. maybe at 4, i'll change it.
     public class AbilityCooldownTimer : MonoBehaviour
     {
-        [SerializeField] Ability defaultAbility;
-        [SerializeField] Ability specialAbilityOne;
-        [SerializeField] Ability specialAbilityTwo;
+        [SerializeField] Ability defaultAbility = null;
+        [SerializeField] Ability specialAbilityOne = null;
+        [SerializeField] Ability specialAbilityTwo = null;
 
-        [SerializeField] Image defaultAbilityDarkMask;
-        [SerializeField] Image specialAbilityOneDarkMask;
-        [SerializeField] Image specialAbilityTwoDarkMask;
+        [SerializeField] Image defaultAbilityDarkMask = null;
+        [SerializeField] Image specialAbilityOneDarkMask = null;
+        [SerializeField] Image specialAbilityTwoDarkMask = null;
 
-        [SerializeField] TMP_Text defaultAbilityTimeText;
-        [SerializeField] TMP_Text specialAbilityOneTimeText;
-        [SerializeField] TMP_Text specialAbilityTwoTimeText;
+        [SerializeField] TMP_Text defaultAbilityTimeText = null;
+        [SerializeField] TMP_Text specialAbilityOneTimeText = null;
+        [SerializeField] TMP_Text specialAbilityTwoTimeText = null;
 
         private void Awake()
         {

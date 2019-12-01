@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using RoboRyanTron.Variables;
+using Drw.Attributes;
 
 namespace Drw.CharacterSystems
 {
+
+    /// <summary>
+    /// TODO BUG - if one player is dead, you can't switch, but the timer still turns on. It only does it once.
+    /// </summary>
     public class CharacterSwitch : MonoBehaviour, ICharacterSwitch, IScheduler
     {
         public event Action OnCharacterSwitch = delegate { };
-        public float BaseSwitchCooldownTime { get { return baseSwitchCooldownTime; } }
+        public float BaseSwitchCooldownTime => baseSwitchCooldownTime.Value;
 
-        [SerializeField] CharacterStateMachine stateMachine;
-        [SerializeField] CinemachineFreeLook freeLookCam;
-        [SerializeField] GameObject playerLeep;
-        [SerializeField] GameObject playerBownd;
-        [SerializeField] GameObject followPlayer;
-        [SerializeField] float baseSwitchCooldownTime = 5f;
+        [SerializeField] CharacterStateMachine stateMachine = null;
+        [SerializeField] CinemachineFreeLook freeLookCam = null;
+        [SerializeField] GameObject playerLeep = null;
+        [SerializeField] GameObject playerBownd = null;
+        [SerializeField] GameObject followPlayer = null;
+        [SerializeField] FloatVariable baseSwitchCooldownTime = null;
 
         float characterSwitchLastActivatedTime;
+        bool allPlayersAreStillAlive = true;
+        bool onlyOnePlayerLeftAlive = false;
 
         private void Awake()
         {
@@ -34,7 +42,7 @@ namespace Drw.CharacterSystems
         private void Start()
         {
             DefaultCharacterStart();
-            characterSwitchLastActivatedTime = Time.time - baseSwitchCooldownTime;
+            characterSwitchLastActivatedTime = Time.time - baseSwitchCooldownTime.Value;
         }
 
         private void DefaultCharacterStart()
@@ -46,60 +54,96 @@ namespace Drw.CharacterSystems
 
         // switch character onto the current position and current rotation of current player.
         // i am only ever gonna have these two characters, so i thikn this is fine the way it is implemented.
-        public void Switch(Vector3 setPosition, Quaternion setRotation)
+        public void SwitchOnCommand(Vector3 setPosition, Quaternion setRotation)
         {
-            if (Time.time - characterSwitchLastActivatedTime > baseSwitchCooldownTime)
+            if (Time.time - characterSwitchLastActivatedTime > baseSwitchCooldownTime.Value)
             {
-                stateMachine.SetCharacterState(CharacterState.CharacterSwitching, this);
-                if (stateMachine.WasSetStateSuccessful)
-                {
-                    print("Switching Character");
-                    OnCharacterSwitch();
-
-                    const float wontGetStuckAndGlitchEverywhereValue = 0.5f;
-                    Vector3 setWithOffset = Vector3.up * wontGetStuckAndGlitchEverywhereValue + setPosition;
-
-                    if (playerLeep.activeSelf) // TURN OFF LEEP
-                    {
-                        SwitchPlayerBowndOn(setRotation, setWithOffset);
-                    }
-                    else if (playerBownd.activeSelf) // TURN OFF BOWND
-                    {
-                        SwitchPlayerLeepOn(setRotation, setWithOffset);
-                    }
-
-                    characterSwitchLastActivatedTime = Time.time;
-                }
+                Switch(setPosition, setRotation);
             }
             else
             {
-                print($"Character Switch not ready yet --  " +
-                    $"{ 100f * (Time.time - characterSwitchLastActivatedTime) / baseSwitchCooldownTime }" +
-                    $"% ready");
+                //print($"Character Switch not ready yet --  " +
+                //    $"{ 100f * (Time.time - characterSwitchLastActivatedTime) / baseSwitchCooldownTime.Value }" +
+                //    $"% ready");
+            }
+        }
+
+        private void Switch(Vector3 setPosition, Quaternion setRotation)
+        {
+            stateMachine.SetCharacterState(CharacterState.CharacterSwitching, this);
+            if (stateMachine.WasSetStateSuccessful)
+            {
+                OnCharacterSwitch();
+
+                const float wontGetStuckWhenSpawningAndGlitchEverywhereValue = 0.5f;
+                Vector3 setWithOffset = Vector3.up * wontGetStuckWhenSpawningAndGlitchEverywhereValue + setPosition;
+
+                if (playerLeep.activeSelf) // TURN OFF LEEP
+                {
+                    SwitchPlayerBowndOn(setRotation, setWithOffset);
+                }
+                else if (playerBownd.activeSelf) // TURN OFF BOWND
+                {
+                    SwitchPlayerLeepOn(setRotation, setWithOffset);
+                }
+
+                characterSwitchLastActivatedTime = Time.time;
             }
         }
 
         private void SwitchPlayerLeepOn(Quaternion setRotation, Vector3 setWithOffset)
         {
-            playerBownd.SetActive(false);
+            if (playerLeep.GetComponent<Health>().IsAlive)
+            {
+                playerBownd.SetActive(false);
 
-            playerLeep.transform.position = setWithOffset;
-            playerLeep.transform.rotation = setRotation;
-            playerLeep.SetActive(true);
+                playerLeep.transform.position = setWithOffset;
+                playerLeep.transform.rotation = setRotation;
+                playerLeep.SetActive(true);
+            }
+            else
+            {
+                GameIsOver();
+            }
         }
 
         private void SwitchPlayerBowndOn(Quaternion setRotation, Vector3 setWithOffset)
         {
-            playerLeep.SetActive(false);
+            if (playerBownd.GetComponent<Health>().IsAlive)
+            {
+                playerLeep.SetActive(false);
 
-            playerBownd.transform.position = setWithOffset;
-            playerBownd.transform.rotation = setRotation;
-            playerBownd.SetActive(true);
+                playerBownd.transform.position = setWithOffset;
+                playerBownd.transform.rotation = setRotation;
+                playerBownd.SetActive(true);
+            }
+            else
+            {
+                GameIsOver();
+            }
+        }
+
+        private void GameIsOver()
+        {
+            allPlayersAreStillAlive = false;
+            print($"CAN't SWITCH - ALL PLAYERS B HELLA DED!!!");
         }
 
         public void Cancel()
         {
             print("cancel character switching");
+        }
+
+        /// <summary>
+        /// only to be used on death to override the switch timer.
+        /// if you switch out back to your other character and then it dies, the timer
+        /// stops it from switching. this is to force a switch.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="setRotation"></param>
+        public void ForceSwitchOnDeath(Vector3 position, Quaternion setRotation)
+        {
+            Switch(position, setRotation);
         }
     }
 }

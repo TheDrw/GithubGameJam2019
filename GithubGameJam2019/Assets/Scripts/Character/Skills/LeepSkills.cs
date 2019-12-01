@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Drw.UI;
+using Drw.Attributes;
+using Drw.Combat;
 
 namespace Drw.CharacterSystems
 {
+    /// <summary>
+    /// TODO - this class is starting to not look good. It seems really coupled with things.
+    /// It is really hurting me. My cat looked at this code and decided to leave me.
+    /// I must win him back by refactoring this code. 
+    /// </summary>
     public class LeepSkills : CharacterSkills
     {
-        [SerializeField] Transform projectilePosition;
-        [SerializeField] GameObject LeepModel;
+        [SerializeField] Transform projectilePosition = null;
+        [SerializeField] GameObject LeepModel = null;
         
         readonly string defaultAbilityAnimName = "defaultAbility";
         readonly string specialAbilityOneAnimName = "abilityOne";
@@ -65,13 +72,13 @@ namespace Drw.CharacterSystems
         // TODO - there's a bug when if you trigger this ability the same frame you land,
         // you will travel way farther than you're supposed to. not sure what to do.
         // This is also implementing the special ability in this class, which isn't what i want to do, but it works for now.
-        // *** refactor later
+        // *** refactor later ***
         IEnumerator SpecialAbilityTwoRoutine()
         {
             isSpecialAbilityTwoActive = true;
             characterMovement.enabled = false;
             const float dashSpeed = 25f;
-            
+
             while (isSpecialAbilityTwoActive)
             {
                 characterController.Move(transform.forward * dashSpeed * Time.deltaTime);
@@ -81,14 +88,21 @@ namespace Drw.CharacterSystems
             characterMovement.enabled = true;
         }
 
+        // TODO - getcomponentinchildren might be costly because it does a DFS.
+        // my guess it is possible that it will traverse all of model's gameobjs 
+        // before reaching the LeepDashHit component.
         void AnimationDashInvisibleBegin()
         {
             LeepModel.SetActive(false);
+            GetComponent<IInvulnerable>().SetInvulnerability(true);
+            GetComponentInChildren<LeepDashHit>().SetActiveHitbox(true);
         }
 
         void AnimationDashInvisibleEnd()
         {
             LeepModel.SetActive(true);
+            GetComponent<IInvulnerable>().SetInvulnerability(false);
+            GetComponentInChildren<LeepDashHit>().SetActiveHitbox(false);
         }
 
         void AnimationEvadeDone()

@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Drw.Core;
 
 namespace Drw.Combat
 {
     [RequireComponent(typeof(Rigidbody))]
     public class GroundTrap : MonoBehaviour
     {
-        [SerializeField] CombatConfig combatConfig;
+        [SerializeField] CombatConfig combatConfig = null;
         Rigidbody rb;
 
         private void OnEnable()
@@ -15,9 +16,10 @@ namespace Drw.Combat
             StartCoroutine(DeactivateTimerRoutine());
         }
 
+        // TODO - build actual destroy thign
         IEnumerator DeactivateTimerRoutine()
         {
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(combatConfig.Lifetime);
             Destroy(gameObject);
         }
     }

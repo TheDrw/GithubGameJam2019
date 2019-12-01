@@ -1,9 +1,12 @@
-﻿namespace Drw.CharacterSystems
+﻿using UnityEngine;
+
+namespace Drw.CharacterSystems
 {
     public interface ICharacterSwitch
     {
         event System.Action OnCharacterSwitch;
-        void Switch(UnityEngine.Vector3 position, UnityEngine.Quaternion setRotation);
+        void SwitchOnCommand(Vector3 position, Quaternion setRotation);
+        void ForceSwitchOnDeath(Vector3 position, Quaternion setRotation);
         float BaseSwitchCooldownTime { get; }
     }
 }

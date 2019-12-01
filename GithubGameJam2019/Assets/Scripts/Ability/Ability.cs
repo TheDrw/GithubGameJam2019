@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// KIND OF influenced by https://learn.unity.com/tutorial/create-an-ability-system-with-scriptable-objects
-/// but I did it differently. 
+/// but I did it differently - and most likely implemented wrong. 
 /// </summary>
 namespace Drw.CharacterSystems.Abilities
 {

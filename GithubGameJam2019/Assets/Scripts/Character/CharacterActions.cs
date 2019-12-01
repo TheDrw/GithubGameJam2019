@@ -2,17 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Drw.Attributes;
 
 namespace Drw.CharacterSystems
 {
     public class CharacterActions : MonoBehaviour, IScheduler
     {
-        [SerializeField] CharacterInput input;
-        [SerializeField] CharacterStateMachine stateMachine;
+        [SerializeField] CharacterInput input = null;
+        [SerializeField] CharacterStateMachine stateMachine = null;
 
         Animator animator;
         CharacterSkills characterSkills;
         ICharacterSwitch characterSwitch;
+        Health health;
 
         float defaultAbilityLastActivatedTime;
         float specialAbilityOneLastActivatedTime;
@@ -24,10 +26,20 @@ namespace Drw.CharacterSystems
             animator = GetComponent<Animator>();
             characterSkills = GetComponent<CharacterSkills>();
             characterSwitch = GetComponentInParent<ICharacterSwitch>();
+            health = GetComponent<Health>();
+
             if (stateMachine == null)
             {
-                Debug.LogError($"State machine missing on {this}");
+                Debug.LogError($"State machine missing on {this} {gameObject}");
             }
+        }
+
+        private void OnEnable()
+        {
+            stateMachine.SetCharacterState(CharacterState.Idle, null);
+            input.UnlockAllInputs();
+            health.OnDied += LockActions;
+            health.OnDied += ForceSwitchWhenPlayerDied;
         }
 
         private void Start()
@@ -58,9 +70,31 @@ namespace Drw.CharacterSystems
             }
         }
 
+        private void OnDisable()
+        {
+            health.OnDied -= LockActions;
+            health.OnDied -= ForceSwitchWhenPlayerDied;
+        }
+
+        void ForceSwitchWhenPlayerDied(int val, float percent)
+        {
+            StartCoroutine(ForceSwitchWhenPlayerDiedRoutine());
+        }
+
+        IEnumerator ForceSwitchWhenPlayerDiedRoutine()
+        {
+            yield return new WaitForSeconds(2f);
+            characterSwitch.ForceSwitchOnDeath(transform.position, transform.rotation);
+        }
+
+        void LockActions(int val, float percent)
+        {
+            input.LockOnlyActionInputs();
+        }
+
         void SwitchCharacter()
         {
-            characterSwitch.Switch(transform.position, transform.rotation);
+            characterSwitch.SwitchOnCommand(transform.position, transform.rotation);
         }
 
         void DefaultAbility()

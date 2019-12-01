@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Drw.UI;
+using Drw.Combat;
 
 namespace Drw.CharacterSystems
 {
@@ -54,8 +55,11 @@ namespace Drw.CharacterSystems
             abilityCooldownTimer.StartSpecialAbilityTwoCooldown();
         }
 
+        // TODO - implement it not here
         IEnumerator SpecialAbilityTwoRoutine()
         {
+            var rolling = GetComponentInChildren<RollingAttackHit>();
+            rolling.SetActiveHitbox(true);
             characterMovement.enabled = false;
             float rollMovementSpeed = 12f;
             float rollGravity = -10f;
@@ -69,6 +73,7 @@ namespace Drw.CharacterSystems
             }
 
             characterMovement.enabled = true;
+            rolling.SetActiveHitbox(false);
         }
 
         void AnimationDefaultHit()

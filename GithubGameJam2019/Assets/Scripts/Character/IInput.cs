@@ -14,7 +14,7 @@ namespace Drw.CharacterSystems
         /// <summary>
         /// Locks any input that are interactions like Use, Attack, Jump etc. Can still move and look aroud
         /// </summary>
-        void LockOnlyInteractionInputs();
+        void LockOnlyActionInputs();
 
         /// <summary>
         /// Lock all inputs such as moving, looking, use, attack, jump etc
@@ -27,7 +27,7 @@ namespace Drw.CharacterSystems
         float LookInputHorizontal { get; }
         float LookInputVertical { get; }
         bool JumpInputDown { get; }
-        bool InteractInputDown { get; }
+        bool ActionInputDown { get; }
         bool DefaultAttackInputDown { get; }
         bool SpecialAbilityOneInputDown { get; }
         bool SpecialAbilityTwoInputDown { get; }

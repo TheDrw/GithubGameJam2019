@@ -2,20 +2,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Drw.Attributes;
 using UnityEngine;
 
 namespace Drw.CharacterSystems
 {                             
     [RequireComponent(typeof(CharacterController))]
-    public class CharacterMovement : MonoBehaviour, IMoveable, IScheduler
+    public class CharacterMovement : MonoBehaviour, IMoveable, IScheduler, IPlayer
     {
-        [SerializeField] CharacterInput input;
-        [SerializeField] CharacterStateMachine stateMachine;
-        [SerializeField] CharacterConfig config;
+        [SerializeField] CharacterInput input = null;
+        [SerializeField] CharacterStateMachine stateMachine = null;
+        [SerializeField] CharacterConfig config = null;
 
         public bool IsGrounded { get { return isGrounded; } }
 
-        bool hasJumpedThisFrame;
+        bool hasJumpedThisFrame = false;
         bool isGrounded;
 
         float airborneMovespeed = 2.5f;
@@ -33,30 +34,40 @@ namespace Drw.CharacterSystems
         CharacterController characterController;
         Camera mainCamera;
         Animator animator;
+        Health health;
 
         Vector3 moveDirection, groundSlope, groundNormal;
+
+        readonly string forwardSpeedWord = "forwardSpeed";
+        readonly string landWord = "land";
+        readonly string isGroundedWord = "isGrounded";
 
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
+            health = GetComponent<Health>();
 
-            if(stateMachine == null)
+            if (stateMachine == null)
             {
-                Debug.LogError($"State machine missing on {this}");
+                Debug.LogError($"State machine missing on {this} {gameObject}");
             }
 
             if(config == null)
             {
-                Debug.LogError($"config is missing on {this}");
+                Debug.LogError($"config is missing on {this} {gameObject}");
             }
+        }
+
+        private void OnEnable()
+        {
+            input.UnlockAllInputs();
+            health.OnDied += LockMovement;
         }
 
         private void Start()
         {
-            // TODO - put somewhere else
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+
             mainCamera = FindObjectOfType<Camera>();
         }
 
@@ -73,6 +84,12 @@ namespace Drw.CharacterSystems
         private void OnDisable()
         {
             moveDirection = Vector3.zero;
+            health.OnDied -= LockMovement;
+        }
+
+        void LockMovement(int val, float percent)
+        {
+            input.LockOnlyMovementInputs();
         }
 
         private void AnimateMovement()
@@ -80,7 +97,7 @@ namespace Drw.CharacterSystems
             float speed = DeterimineMoveSpeed();
             if (isGrounded)
             {
-                animator.SetFloat("forwardSpeed", speed);
+                animator.SetFloat(forwardSpeedWord, speed);
             }
         }
 
@@ -128,15 +145,20 @@ namespace Drw.CharacterSystems
 
             if(input.JumpInputDown)
             {
-                Jump();
+                Jump(Vector3.up);
             }
         }
 
-        public void Jump(float amount = k_jumpForce)
+        public void Knockback(Vector3 knockbackDirection, float knockbackForce)
+        {
+            Jump(knockbackDirection, knockbackForce);
+        }
+
+        public void Jump(Vector3 direction, float amount = k_jumpForce)
         {
             //animator.SetTrigger("jump");
             moveDirection = new Vector3(moveDirection.x, 0f, moveDirection.z);
-            moveDirection += Vector3.up * amount;
+            moveDirection += direction * amount;
             lastTimeJumped = Time.time;
             hasJumpedThisFrame = true;
             isGrounded = false;
@@ -165,7 +187,7 @@ namespace Drw.CharacterSystems
                 }
 
                 lastTimeLanded = Time.time;
-                animator.SetTrigger("land");
+                animator.SetTrigger(landWord);
             }
         }
 
@@ -186,7 +208,9 @@ namespace Drw.CharacterSystems
                         characterController.radius, 
                         Vector3.down, 
                         out RaycastHit hit,
-                        distanceFromCenterToGround
+                        distanceFromCenterToGround,
+                        -1,
+                        QueryTriggerInteraction.Ignore
                     ))
                 {
                     isGrounded = true;
@@ -211,7 +235,9 @@ namespace Drw.CharacterSystems
                     }
                 }
             }
-            animator.SetBool("isGrounded", isGrounded);
+
+
+            animator.SetBool(isGroundedWord, isGrounded);
             //print("grounded: " + isGrounded);
         }
 
@@ -247,11 +273,12 @@ namespace Drw.CharacterSystems
         /// <returns></returns>
         float DeterimineMoveSpeed()
         {
+            // TODO - maybe not have the thresholds here.
             float k_MinWalkThreshold = 0.2f;
             float k_MaxWalkThreshold = 0.75f;
 
-            float inputMagnitude = input.MoveInput.sqrMagnitude;
             float moveSpeed;
+            float inputMagnitude = input.MoveInput.sqrMagnitude;
             if(inputMagnitude >= k_MinWalkThreshold && inputMagnitude < k_MaxWalkThreshold)
             {
                 moveSpeed = config.WalkSpeed;
@@ -272,6 +299,11 @@ namespace Drw.CharacterSystems
         {
             // doesn't cancel anything, but should prevent moving inputs from being received
             //print("cancel movement");
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }

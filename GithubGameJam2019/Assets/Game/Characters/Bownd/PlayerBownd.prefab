@@ -15,6 +15,64 @@ MonoBehaviour:
   defaultAbility: {fileID: 11400000, guid: 48398ef07bc00764ab4d39f162985876, type: 2}
   specialAbilityOne: {fileID: 11400000, guid: a1e50afb0ffef3543adc9cebd21df7f9, type: 2}
   specialAbilityTwo: {fileID: 11400000, guid: a69239be789247645827f17745cd7813, type: 2}
+--- !u!1 &7973251110290560205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8911010972819392091}
+  - component: {fileID: 1914020932909056327}
+  - component: {fileID: 9174551234794739846}
+  m_Layer: 8
+  m_Name: Rolling Attack Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8911010972819392091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973251110290560205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8089114581249100272}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1914020932909056327
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973251110290560205}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.47, z: 0.42}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9174551234794739846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973251110290560205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4c77bfaec2c07408d3d6229a4b1d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rollingConfig: {fileID: 11400000, guid: cb62660107e40344cbb7eaef50b55583, type: 2}
 --- !u!1001 &3235444891560063595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,7 +140,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8639748314017690971, guid: a9f19ce4c28cce7469898ebf4b22636f,
+    - target: {fileID: 1387682324455205874, guid: a9f19ce4c28cce7469898ebf4b22636f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387682324455205874, guid: a9f19ce4c28cce7469898ebf4b22636f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.203
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555457757818897024, guid: a9f19ce4c28cce7469898ebf4b22636f,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -174,6 +242,11 @@ PrefabInstance:
       propertyPath: specialAbilityTwoTimeText
       value: 
       objectReference: {fileID: 7840886022986199372}
+    - target: {fileID: 8639748314017690971, guid: a9f19ce4c28cce7469898ebf4b22636f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7205737189371664905, guid: a9f19ce4c28cce7469898ebf4b22636f,
         type: 3}
       propertyPath: m_text

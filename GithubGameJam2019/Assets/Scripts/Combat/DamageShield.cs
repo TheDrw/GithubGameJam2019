@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Drw.Attributes;
 
 namespace Drw.Combat
 {
     public class DamageShield : MonoBehaviour
     {
-        [SerializeField] CombatConfig weaponConfig;
         Health health;
 
         private void Awake()
@@ -17,27 +14,17 @@ namespace Drw.Combat
 
         private void OnEnable()
         {
-            health.onDied += DestroyShield;
+            health.OnDied += DestroyShield;
         }
 
         private void OnDisable()
         {
-            health.onDied -= DestroyShield;
+            health.OnDied -= DestroyShield;
         }
 
-        void DestroyShield(int val)
+        void DestroyShield(int val, float percentage)
         {
             Destroy(gameObject, 1f);
-        }
-
-        // TODO - shields can damage ANY IDamageable object
-        private void OnCollisionEnter(Collision collision)
-        {
-            var damageable = collision.gameObject.GetComponent<IDamageable>();
-            if(damageable != null)
-            {
-                damageable.Damage(weaponConfig.BaseDamage);
-            }
         }
     }
 }

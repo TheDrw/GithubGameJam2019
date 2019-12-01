@@ -6,43 +6,63 @@ using RoboRyanTron.Variables;
 
 namespace Drw.Attributes
 {
-    public class Health : MonoBehaviour, IDamageable, IHealable
+    /// <summary>
+    /// Usually attached to the hitbox of a character
+    /// </summary>
+    public class Health : MonoBehaviour, IDamageable, IHealable, IInvulnerable
     {
-        public event Action<int> onDied = delegate { };
-        public event Action<int> onReceivedDamage = delegate { };
-        public event Action<int> onReceviedHeal = delegate { };
+        public event Action<int, float> OnDied = delegate { };
+        public event Action<int, float> OnReceivedDamage = delegate { };
+        public event Action<int, float> OnReceviedHeal = delegate { };
+        public bool IsAlive => isAlive;
 
-        [SerializeField] IntegerVariable maxHealthPoints; 
-        bool isDead;
-        int healthPoints;
+        [SerializeField] IntegerVariable maxHealthPoints = null;
+
+        bool isAlive = true;
+        bool isInvulnerable = false;
+        int currentHealthPoints;
 
         private void Awake()
         {
             if(maxHealthPoints == null)
             {
-                Debug.LogError($"{maxHealthPoints} missing on {this} {gameObject}");
+                Debug.LogError($"{maxHealthPoints.name} missing on {this} {gameObject}");
             }
-            healthPoints = maxHealthPoints.Value;
+            currentHealthPoints = maxHealthPoints.Value;
         }
 
         public void Damage(int damageAmount)
         {
+            if (isInvulnerable || !isAlive) return;
+
             print($"{name} took {damageAmount} pts of damage");
-            healthPoints = Mathf.Clamp(healthPoints - damageAmount, 0, maxHealthPoints.Value);
-            if (healthPoints > 0)
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damageAmount, 0, maxHealthPoints.Value);
+            if (currentHealthPoints > 0)
             {
-                onReceivedDamage(damageAmount);
+                OnReceivedDamage(damageAmount, healthFraction);
             }
-            else if(healthPoints == 0 && !isDead)
+            else if(currentHealthPoints == 0 && isAlive)
             {
-                isDead = true;
-                onDied(damageAmount);
+                isAlive = false;
+                print($"{name} died");
+                OnDied(damageAmount, healthFraction);
             }
         }
 
         public void Heal(int healAmount)
         {
-            onReceviedHeal(healAmount);
+            print($"{name} received {healAmount} pts of healing");
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints + healAmount, 0, maxHealthPoints.Value);
+            OnReceviedHeal(healAmount, healthFraction);
         }
+
+        public void SetInvulnerability(bool status)
+        {
+            isInvulnerable = status;
+        }
+
+        /// returns fraction of health points / max hp from 0f to 1f
+        /// mainly used for the UI thigns
+        private float healthFraction => (float)currentHealthPoints / maxHealthPoints.Value;
     }
 }

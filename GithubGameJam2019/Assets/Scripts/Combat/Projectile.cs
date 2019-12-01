@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Drw.Attributes;
+using Drw.Core;
 
 namespace Drw.Combat
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] CombatConfig weaponConfig;
+        [SerializeField] CombatConfig weaponConfig = null;
         Rigidbody rb;
         bool isProjectileUsed = false;
 
@@ -22,13 +22,8 @@ namespace Drw.Combat
             if (isProjectileUsed) return;
             
             rb.useGravity = true;
-            var damageable = collision.gameObject.GetComponent<IDamageable>();
-            if(damageable != null)
-            {
-                damageable.Damage(weaponConfig.BaseDamage);
-            }
-
             isProjectileUsed = true;
+            gameObject.layer = GameConstants.k_PlayerLayer; // TODO - if pooled and want to hit player, might want to change this
         }
 
         private void OnEnable()
@@ -51,7 +46,7 @@ namespace Drw.Combat
 
         IEnumerator DeactivateTimerRoutine()
         {
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(weaponConfig.Lifetime);
             DisableProjectile();
         }
     }

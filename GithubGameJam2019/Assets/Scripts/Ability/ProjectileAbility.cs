@@ -10,7 +10,7 @@ namespace Drw.CharacterSystems.Abilities
     [CreateAssetMenu(menuName = "Abilities/Projectile Ability")]
     public class ProjectileAbility : Ability
     {
-        [SerializeField] Projectile projectile;
+        [SerializeField] Projectile projectile = null;
 
         public override void Initialize(GameObject obj)
         {

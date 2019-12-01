@@ -8,7 +8,7 @@ namespace Drw.CharacterSystems.Abilities
     [CreateAssetMenu(menuName = "Abilities/Ground Trap Ability")]
     public class GroundedTrapAbility : Ability
     {
-        [SerializeField] GroundTrap groundTrap;
+        [SerializeField] GroundTrap groundTrap = null;
 
         public override void Initialize(GameObject obj)
         {

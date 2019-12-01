@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 10
   baseSpeed: 10
+  knockbackForce: 8
+  lifetime: 6
   startupSound: {fileID: 0}
   hitSound: {fileID: 0}
   destroySound: {fileID: 0}
