@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b358c02e570c64ea65dcbfe65c75ab, type: 3}
+  m_Name: First Quest Line
+  m_EditorClassIdentifier: 
+  description: Get rid of those chickens!
+  introWords:
+  - Meow meow...Itchy itchy itchy. Why am I so itchy!?!
+  - Oh, hello there!
+  - I've been getting really itchy for some reason, and I don't know why!
+  - I feel like it might be those flippin' birds behind that house!
+  - Can you get rid of those chickens for me, please? Meow!
+  finishedWords:
+  - Thanks for getting of those flippity flappy flappin' things!
+  - Meow!
+  - Sadly, I don't think that solved the problem.
+  - Maybe look around to find out some clues.
+  - Luckily, I found these onions on a mountain when I got lost in a desert.
+  - Have some. They recover health and are delicious!
+  initiated: 1
+  readyToTurnIn: 1
+  confirmedFinished: 0

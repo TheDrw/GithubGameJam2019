@@ -1,6 +1,0 @@
-roystan
-
-creator's 
-
-tutorial : https://roystan.net/articles/toon-shader.html
-github : https://github.com/IronWarrior/UnityToonShader

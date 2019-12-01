@@ -22,7 +22,7 @@ namespace Drw.Combat
             health.OnDied -= DestroyShield;
         }
 
-        void DestroyShield(int val, float percentage)
+        void DestroyShield(int val, float percentage, int currentHP, int maxHP)
         {
             Destroy(gameObject, 1f);
         }

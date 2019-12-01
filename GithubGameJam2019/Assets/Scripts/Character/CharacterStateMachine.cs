@@ -112,8 +112,9 @@ namespace Drw.CharacterSystems
 
         private void SetToCharacterSwitchingState(CharacterState setState)
         {
-            if( CurrentState == CharacterState.Dead
-                ||CurrentState == CharacterState.Grounded 
+            if (CurrentState == CharacterState.Dead
+                || CurrentState == CharacterState.Idle
+                || CurrentState == CharacterState.Grounded 
                 || CurrentState == CharacterState.Moving)
             {
                 ConfirmSetState(setState);

@@ -26,7 +26,6 @@ namespace Drw.Interactables
         
         private void OnTriggerEnter(Collider other)
         {
-            print(other.name);
             var moveable = other.GetComponent<IMoveable>();
             if (moveable != null)
             {

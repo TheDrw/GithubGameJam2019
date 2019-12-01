@@ -39,12 +39,12 @@ namespace Drw.CharacterSystems
             health.OnDied -= PlayDiedAnim;
         }
 
-        void PlayGotHitAnim(int val, float percentage)
+        void PlayGotHitAnim(int val, float percentage, int currentHP, int maxHP)
         {
             animator.SetTrigger(gotHitWord);
         }
 
-        void PlayDiedAnim(int val, float percentage)
+        void PlayDiedAnim(int val, float percentage, int currentHP, int maxHP)
         {
             animator.SetBool("isDead", true);
             animator.SetTrigger(diedWord);

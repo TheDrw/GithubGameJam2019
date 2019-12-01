@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b358c02e570c64ea65dcbfe65c75ab, type: 3}
+  m_Name: Second Quest Line
+  m_EditorClassIdentifier: 
+  description: 
+  introWords:
+  - Hmmmm....
+  - There are these f-f-f-f-f-f
+  - F-FLEA LOOKING THINGS????
+  - I think that's it...
+  - HURRY, GET RID OF ALL OF THOSE FLEES BEHIND THE FENCE!!!
+  finishedWords:
+  - You got them all!
+  - But I still feel...
+  - LIKE I AM GETTING PINCHED EVERYWHERE!
+  - Those fleas must have not been it.
+  - I will figure the source of it!
+  initiated: 0
+  readyToTurnIn: 0
+  confirmedFinished: 0

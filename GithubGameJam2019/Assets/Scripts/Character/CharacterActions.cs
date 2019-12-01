@@ -76,7 +76,7 @@ namespace Drw.CharacterSystems
             health.OnDied -= ForceSwitchWhenPlayerDied;
         }
 
-        void ForceSwitchWhenPlayerDied(int val, float percent)
+        void ForceSwitchWhenPlayerDied(int val, float percent, int currentHP, int maxHP)
         {
             StartCoroutine(ForceSwitchWhenPlayerDiedRoutine());
         }
@@ -87,7 +87,7 @@ namespace Drw.CharacterSystems
             characterSwitch.ForceSwitchOnDeath(transform.position, transform.rotation);
         }
 
-        void LockActions(int val, float percent)
+        void LockActions(int val, float percent, int currentHP, int maxHP)
         {
             input.LockOnlyActionInputs();
         }

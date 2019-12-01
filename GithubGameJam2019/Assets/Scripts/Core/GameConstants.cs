@@ -19,6 +19,8 @@
         public const string k_ButtonNameFire3 = "Fire3";
         public const string k_ButtonNameFire4 = "Fire4";
 
+        public const string k_InteractButton = "Interact";
+
         public const string k_RightTrigger = "RightTrigger";
         public const string k_LeftTrigger = "LeftTrigger";
 
@@ -29,5 +31,7 @@
 
         public const int k_PlayerLayer = 8;
         public const int k_OnlyDetectPlayerLayer = 12;
+
+        
     }
 }

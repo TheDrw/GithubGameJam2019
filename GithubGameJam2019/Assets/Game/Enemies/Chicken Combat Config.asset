@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df565c53f534b8f4f99bcd3da212b9ba, type: 3}
   m_Name: Chicken Combat Config
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  baseDamage: 2
   baseSpeed: 0
   knockbackForce: -1
   lifetime: 0

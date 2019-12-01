@@ -140,7 +140,7 @@ namespace Drw.Enemy
             health.OnDied -= Died;
         }
 
-        private void GotHit(int val, float percent)
+        private void GotHit(int val, float percent, int currentHP, int maxHP)
         {
             numberOfHits++;
             if (numberOfHits >= enemyConfig.NumberOfHitsToGetHitStunned)
@@ -150,11 +150,9 @@ namespace Drw.Enemy
             }
         }
 
-        private void Died(int val, float percent)
+        private void Died(int val, float percent, int currentHP, int maxHP)
         {
             gameObject.layer = GameConstants.k_PlayerLayer;
-            //rb.isKinematic = true;
-            //GetComponent<Collider>().enabled = false;
             animator.SetTrigger(GameConstants.k_DiedAnimWord);
             Destroy(gameObject, 2f); // TODO - temp
         }
@@ -178,6 +176,7 @@ namespace Drw.Enemy
         }
 
         // used for the bed spring and knockbacks
+        // TODO - it doesn't bounce all the time anymore. it only bounces once.
         public void Jump(Vector3 direction, float amount)
         {
             navMeshAgent.enabled = false;

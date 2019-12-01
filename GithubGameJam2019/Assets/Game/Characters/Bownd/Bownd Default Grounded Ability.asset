@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bownd Default Grounded Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
-  baseCooldown: 1
+  baseCooldown: 2
   groundAttack: {fileID: 6059525340986104842, guid: dcc039e630f703c41b8cd9b4088a0944,
     type: 3}

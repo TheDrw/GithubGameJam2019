@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Leep Special 1 Ground Trap Ability
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 0}
-  baseCooldown: 5
+  baseCooldown: 4
   groundTrap: {fileID: 172201384524897443, guid: b55e4dcb92ccbee408ef26b8a890a0c4,
     type: 3}

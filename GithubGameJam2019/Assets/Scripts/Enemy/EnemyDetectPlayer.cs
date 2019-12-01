@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Drw.Core;
 
 namespace Drw.Enemy
 {
@@ -12,8 +13,7 @@ namespace Drw.Enemy
 
         private void Awake()
         {
-            int playerDetectionOnlyLayer = 12;
-            gameObject.layer = playerDetectionOnlyLayer;
+            gameObject.layer = GameConstants.k_OnlyDetectPlayerLayer;
         }
 
         private void Start()

@@ -11,16 +11,20 @@ namespace Drw.Attributes
     /// </summary>
     public class Health : MonoBehaviour, IDamageable, IHealable, IInvulnerable
     {
-        public event Action<int, float> OnDied = delegate { };
-        public event Action<int, float> OnReceivedDamage = delegate { };
-        public event Action<int, float> OnReceviedHeal = delegate { };
+        public event Action<int, float, int, int> OnDied = delegate { };
+        public event Action<int, float, int, int> OnReceivedDamage = delegate { };
+        public event Action<int, float, int, int> OnReceviedHeal = delegate { };
         public bool IsAlive => isAlive;
+        public int CurrentHealthPoints => currentHealthPoints;
+        public int MaxHealthPoints => maxHealthPoints.Value;
 
         [SerializeField] IntegerVariable maxHealthPoints = null;
 
         bool isAlive = true;
         bool isInvulnerable = false;
         int currentHealthPoints;
+
+        
 
         private void Awake()
         {
@@ -39,13 +43,13 @@ namespace Drw.Attributes
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damageAmount, 0, maxHealthPoints.Value);
             if (currentHealthPoints > 0)
             {
-                OnReceivedDamage(damageAmount, healthFraction);
+                OnReceivedDamage(damageAmount, healthFraction, currentHealthPoints, maxHealthPoints.Value);
             }
             else if(currentHealthPoints == 0 && isAlive)
             {
                 isAlive = false;
                 print($"{name} died");
-                OnDied(damageAmount, healthFraction);
+                OnDied(damageAmount, healthFraction, currentHealthPoints, maxHealthPoints.Value);
             }
         }
 
@@ -53,7 +57,7 @@ namespace Drw.Attributes
         {
             print($"{name} received {healAmount} pts of healing");
             currentHealthPoints = Mathf.Clamp(currentHealthPoints + healAmount, 0, maxHealthPoints.Value);
-            OnReceviedHeal(healAmount, healthFraction);
+            OnReceviedHeal(healAmount, healthFraction, currentHealthPoints, maxHealthPoints.Value);
         }
 
         public void SetInvulnerability(bool status)

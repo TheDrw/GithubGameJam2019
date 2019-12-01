@@ -16,6 +16,7 @@ namespace Drw.NPC
         float timeLastSat = 0f;
         bool isSitting = false;
         bool isMoving = false;
+        bool isPlayerInRange = false;
 
         private readonly string sitWord = "sit";
 

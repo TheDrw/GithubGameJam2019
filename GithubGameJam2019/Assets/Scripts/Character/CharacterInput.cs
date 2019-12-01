@@ -91,6 +91,14 @@ namespace Drw.CharacterSystems
 
         public bool ActionInputDown => throw new System.NotImplementedException();
 
+        public bool InteractInputDown
+        {
+            get
+            {
+                return Input.GetButtonDown(GameConstants.k_InteractButton) && isActionsUnlocked;
+            }
+        }
+
         public void LockAllInputs()
         {
             isMovementUnlocked = false;

@@ -5,6 +5,7 @@ using Cinemachine;
 using System;
 using RoboRyanTron.Variables;
 using Drw.Attributes;
+using UnityEngine.SceneManagement;
 
 namespace Drw.CharacterSystems
 {
@@ -89,6 +90,10 @@ namespace Drw.CharacterSystems
 
                 characterSwitchLastActivatedTime = Time.time;
             }
+            else
+            {
+                print(stateMachine.CurrentState);
+            }
         }
 
         private void SwitchPlayerLeepOn(Quaternion setRotation, Vector3 setWithOffset)
@@ -127,6 +132,13 @@ namespace Drw.CharacterSystems
         {
             allPlayersAreStillAlive = false;
             print($"CAN't SWITCH - ALL PLAYERS B HELLA DED!!!");
+            StartCoroutine(GoToTitleRoutine());
+        }
+
+        IEnumerator GoToTitleRoutine()
+        {
+            yield return new WaitForSeconds(5f);
+            SceneManager.LoadScene(0);
         }
 
         public void Cancel()
@@ -143,6 +155,8 @@ namespace Drw.CharacterSystems
         /// <param name="setRotation"></param>
         public void ForceSwitchOnDeath(Vector3 position, Quaternion setRotation)
         {
+            print("FORCE SWITCHING");
+            stateMachine.SetCharacterState(CharacterState.Idle, this);
             Switch(position, setRotation);
         }
     }

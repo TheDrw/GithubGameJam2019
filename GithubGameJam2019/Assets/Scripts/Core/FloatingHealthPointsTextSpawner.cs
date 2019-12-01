@@ -38,7 +38,7 @@ namespace Drw.Core
             health.OnReceviedHeal -= SpawnHealText;
         }
 
-        void SpawnDamageText(int damage, float percentage)
+        void SpawnDamageText(int damage, float percentage, int currentHP, int maxHP)
         {
             char damageSign = '-';
             var damageTextObject = floatingHealthPointsTextPool.GetGameObjectFromPool();
@@ -47,7 +47,7 @@ namespace Drw.Core
             damageTextObject.SetHealthPointsFloatingText(damage, damageSign);
         }
 
-        void SpawnHealText(int heal, float percentage)
+        void SpawnHealText(int heal, float percentage, int currentHP, int maxHP)
         {
             char healSign = '+';
             var healTextObject = floatingHealthPointsTextPool.GetGameObjectFromPool();

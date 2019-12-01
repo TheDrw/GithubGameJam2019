@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7a09b5d65a7564f827de495b0cab51, type: 3}
   m_Name: Chicken Health Points
   m_EditorClassIdentifier: 
-  Value: 50
+  Value: 25

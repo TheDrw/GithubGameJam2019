@@ -87,7 +87,7 @@ namespace Drw.CharacterSystems
             health.OnDied -= LockMovement;
         }
 
-        void LockMovement(int val, float percent)
+        void LockMovement(int val, float percent, int currentHP, int maxHP)
         {
             input.LockOnlyMovementInputs();
         }

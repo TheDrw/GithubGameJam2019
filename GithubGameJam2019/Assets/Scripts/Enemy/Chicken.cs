@@ -32,12 +32,12 @@ namespace Drw.Enemy
             health.OnDied -= Died;
         }
 
-        private void GotHit(int val, float percent)
+        private void GotHit(int val, float percent, int currentHP, int maxHP)
         {
             animator.SetTrigger(gotHit);
         }
 
-        private void Died(int val, float percent)
+        private void Died(int val, float percent, int currentHP, int maxHP)
         {
             animator.SetTrigger(died);
             GetComponent<BoxCollider>().enabled = false;

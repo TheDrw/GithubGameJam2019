@@ -40,7 +40,7 @@ namespace Drw.UI
             health.OnReceviedHeal -= UpdateHealthBar;
         }
 
-        void UpdateHealthBar(int value, float percentage)
+        void UpdateHealthBar(int value, float percentage, int currentHP, int maxHP)
         {
             foreground.localScale = new Vector3(percentage, 1, 1);
         }

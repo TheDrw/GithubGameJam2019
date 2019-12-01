@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d0d661d9c943942a17187c96350f0a, type: 3}
   m_Name: Chicken Config
   m_EditorClassIdentifier: 
-  runSpeed: 5
+  runSpeed: 4
   walkSpeed: 2
   attackRange: 2.5
   runRange: 8
@@ -23,6 +23,7 @@ MonoBehaviour:
   baseSpeed: 10
   attackFrequency: 1
   knockbackForce: 5
+  numberOfHitsToGetHitStunned: 0
   alertSound: {fileID: 0}
   attackSound: {fileID: 0}
   hitSound: {fileID: 0}

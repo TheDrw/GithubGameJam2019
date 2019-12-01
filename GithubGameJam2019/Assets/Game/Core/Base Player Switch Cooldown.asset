@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Base Player Switch Cooldown
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: 5
+  Value: 10

@@ -7,6 +7,6 @@ namespace Drw.Inventory
 {
     public class InventorySystem : ScriptableObject
     {
-        //Dictionary<Item, int> inventory = null;
+        Dictionary<Item, int> inventory = null;
     }
 }

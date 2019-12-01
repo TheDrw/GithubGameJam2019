@@ -1,0 +1,7 @@
+roystan - creator of toonshader
+tutorial : https://roystan.net/articles/toon-shader.html
+github : https://github.com/IronWarrior/UnityToonShader
+
+
+keijiro takahashi - creator of skybox shader
+github : https://github.com/Keijiro
