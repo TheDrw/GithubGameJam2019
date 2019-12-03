@@ -15,7 +15,7 @@ MonoBehaviour:
   baseDamage: 10
   baseSpeed: 20
   knockbackForce: 5
-  lifetime: 3
+  lifetime: 6
   startupSound: {fileID: 0}
   hitSound: {fileID: 0}
   destroySound: {fileID: 0}
