@@ -8,4 +8,3 @@ The end product at the end of the jam! I would like to thank github for hosting 
 While I want to continue to work on this game for another month or two, I won't be updating this repository anymore because I want to put assets that I don't personally own. With that said, feel free to use any of the assets in here for whatever you want.
 
 If you have questions or suggestions to help me to improve my code, leave me a comment on my itch.io from above. Have fun and keep learning!
-
